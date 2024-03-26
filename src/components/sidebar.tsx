@@ -10,7 +10,7 @@ export default function Sidebar() {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Welcome Chippyjak</SheetTitle>
+          <SheetTitle>Welcome Profesor Gąbka</SheetTitle>
           <SheetDescription>
             <Button variant="destructive">logout</Button>
           </SheetDescription>

@@ -37,7 +37,7 @@ export default function Login() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 w-4/5">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 w-4/5 my-auto">
         <div className="space-y-2">
           <FormField
             control={form.control}
