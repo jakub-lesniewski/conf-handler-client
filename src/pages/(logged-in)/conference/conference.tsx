@@ -1,6 +1,15 @@
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 import { Session } from "./session";
 import { Event } from "./event";
 
@@ -71,23 +80,33 @@ export default function Conference() {
       </TabsList>
       <Card>
         <TabsContent value="schedule">
-          <Table className="table-fixed">
+          <Table className="">
             <TableHeader>
               <TableRow>
-                <TableHead className="w-1/4">time</TableHead>
-                <TableHead className="w-1/4">room</TableHead>
-                <TableHead className="w-1/2">name</TableHead>
+                <TableHead>time</TableHead>
+                <TableHead>room</TableHead>
+                <TableHead>name</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {sessions.map((session) => (
-                <TableRow key={session.id} className="cursor-pointer ">
-                  <TableCell className="text-xs">
-                    {session.timeStart} - {session.timeEnd}
-                  </TableCell>
-                  <TableCell className="text-xs">{session.room}</TableCell>
-                  <TableCell className="text-xs">{session.name}</TableCell>
-                </TableRow>
+                <Dialog>
+                  <DialogTrigger>
+                    <TableRow key={session.id} className="cursor-pointer ">
+                      <TableCell className="text-xs">
+                        {session.timeStart} - {session.timeEnd}
+                      </TableCell>
+                      <TableCell className="text-xs">{session.room}</TableCell>
+                      <TableCell className="text-xs">{session.name}</TableCell>
+                    </TableRow>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>I'm a dialog modal window</DialogTitle>
+                      <DialogDescription>I'm evil and I displaced table layout</DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
               ))}
             </TableBody>
           </Table>
