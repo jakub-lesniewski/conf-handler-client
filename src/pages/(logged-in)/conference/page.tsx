@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import {
   Pagination,
   PaginationContent,
@@ -8,8 +8,9 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import Timeline from "./timeline";
 
-type TimeLineElement = {
+export type TimelineElement = {
   id: string;
   name: string;
   timeStart: string;
@@ -17,10 +18,10 @@ type TimeLineElement = {
   roomNumber: string;
 };
 
-const mockData: TimeLineElement[] = [
+const mockData: TimelineElement[] = [
   {
     id: "1",
-    name: "Bardzo fajna sesja",
+    name: "Session",
     timeStart: "12:00",
     timeEnd: "14:30",
     roomNumber: "C202",
@@ -36,28 +37,14 @@ const mockData: TimeLineElement[] = [
 
 export default function Conference() {
   return (
-    <Card className="my-8 w- flex flex-col justify-between w-[350px]">
+    <Card className="my-8 flex flex-col justify-between w-[350px]">
       <div>
         <CardHeader className="border-b">
-          <p className="tracking-wider font-semibold">
-            <span className="font-bold tracking-widest">Wednesday</span> 12 March, 2024
-          </p>
+          <p className="font-bold tracking-widest">Wednesday</p>
+          <p className="text-sm">12 March, 2024</p>
         </CardHeader>
         <CardContent>
-          <ol className="mt-2">
-            {mockData.map((item) => (
-              <li
-                key={item.id}
-                className="border-b p-2 cursor-pointer flex justify-between items-center hover:bg-secondary rounded-md"
-              >
-                <div>
-                  <p className="text-sm font-semibold">{item.name}</p>
-                  <p className="text-sm">{item.roomNumber}</p>
-                </div>
-                <p className="text-sm">{`${item.timeStart} - ${item.timeEnd}`}</p>
-              </li>
-            ))}
-          </ol>
+          <Timeline timelineList={mockData} />
         </CardContent>
       </div>
       <CardFooter className="text-sm border-t pt-2 flex flex-col">
