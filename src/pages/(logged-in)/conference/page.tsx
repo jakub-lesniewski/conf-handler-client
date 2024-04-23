@@ -5,6 +5,7 @@ import { useLoaderData } from "react-router-dom";
 import { TimelineElement } from "./conference-types";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 export default function Conference() {
   const [currDate, setCurrDate] = useState<Date>(new Date());
@@ -44,10 +45,11 @@ export default function Conference() {
         </div>
 
         <CardFooter className="border-t p-1 flex justify-around">
-          <Button onClick={handleSetPrevDay} variant="ghost">
+          <Button onClick={handleSetPrevDay} variant="ghost" className="w-[140px]">
             <MoveLeft strokeWidth={1} className="mr-2" /> previous day
           </Button>
-          <Button onClick={handleSetNextDay} variant="ghost">
+          <Separator orientation="vertical" />
+          <Button onClick={handleSetNextDay} variant="ghost" className="w-[140px]">
             next day
             <MoveRight strokeWidth={1} className="ml-2" />
           </Button>
