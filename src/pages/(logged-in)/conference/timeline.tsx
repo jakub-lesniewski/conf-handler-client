@@ -12,7 +12,7 @@ export default function Timeline({ timeline }: TimelineProps) {
       {timeline.map((element) => (
         <li
           key={element.id}
-          className="border-b p-2 cursor-pointer flex justify-between items-center hover:bg-secondary rounded-md"
+          className="border-b px-4 py-2 cursor-pointer flex justify-between items-center hover:bg-secondary rounded-md"
         >
           {isSession(element) ? <SessionItem session={element} /> : <EventItem event={element} />}
         </li>
