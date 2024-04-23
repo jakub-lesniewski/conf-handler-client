@@ -15,12 +15,20 @@ export default function Timeline({ timeline }: TimelineProps) {
       {timeline.map((element) => (
         <Dialog key={element.id}>
           <DialogTrigger asChild>
-            <li className="border-b px-4 py-2 cursor-pointer flex justify-between items-center hover:bg-secondary rounded-md">
-              {isSession(element) ? <SessionItem session={element} /> : <EventItem event={element} />}
+            <li className="flex cursor-pointer items-center justify-between rounded-md border-b px-4 py-2 hover:bg-secondary">
+              {isSession(element) ? (
+                <SessionItem session={element} />
+              ) : (
+                <EventItem event={element} />
+              )}
             </li>
           </DialogTrigger>
 
-          {isSession(element) ? <SessionDialog session={element} /> : <EventDialog event={element} />}
+          {isSession(element) ? (
+            <SessionDialog session={element} />
+          ) : (
+            <EventDialog event={element} />
+          )}
         </Dialog>
       ))}
     </ol>
