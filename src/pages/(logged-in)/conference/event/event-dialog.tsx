@@ -1,5 +1,9 @@
-import { Event } from "./conference-types";
-import { DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Event } from "../conference-types";
+import {
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 type EventDialogProps = {
   event: Event;

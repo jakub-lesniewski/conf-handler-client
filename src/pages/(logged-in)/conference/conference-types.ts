@@ -8,8 +8,10 @@ export type Session = {
   street: string;
   building: string;
   roomNumber: string;
-  eventList: (Event | Lecture)[];
+  eventList: EventElement[];
 };
+
+export type EventElement = Event | Lecture;
 
 export type Event = {
   id: string;
@@ -24,5 +26,9 @@ export type Lecture = Event & {
 };
 
 export function isSession(element: TimelineElement): element is Session {
-  return !!(element as Session).roomNumber;
+  return "roomNumber" in element;
+}
+
+export function isLecture(element: EventElement): element is Lecture {
+  return "abstract" in element && "lecturer" in element && "topic" in element;
 }

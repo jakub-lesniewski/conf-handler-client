@@ -1,4 +1,4 @@
-import { Session } from "./conference-types";
+import { Session } from "../conference-types";
 import {
   DialogContent,
   DialogDescription,
@@ -14,7 +14,7 @@ export default function SessionDialog({
   session: { name, street, city, duration, building, roomNumber, eventList },
 }: SessionDialogProps) {
   return (
-    <DialogContent>
+    <DialogContent className="max-h-svh">
       <DialogHeader className="space-y-3">
         <DialogTitle className="text-start">{name}</DialogTitle>
         <div className="flex gap-6">
@@ -39,26 +39,17 @@ export default function SessionDialog({
         </div>
       </DialogHeader>
 
-      <div className="mt-2 flex border-t pt-2 text-sm">
-        <ol className="w-1/2 space-y-2">
-          {eventList.map((element) => (
-            <li
-              key={element.id}
-              className="cursor-pointer rounded-lg px-2 py-1"
-            >
-              {element.name}
-            </li>
-          ))}
-        </ol>
-
-        <section className="w-1/2 space-y-1">
-          <p>name</p>
-          <p>duration</p>
-          <p>abstract</p>
-          <p>lecturer</p>
-          <p>topic</p>
-        </section>
-      </div>
+      <ol className="mt-2 rounded-lg border text-sm">
+        {eventList.map((element) => (
+          <li
+            key={element.id}
+            className="flex cursor-pointer items-center justify-between border-b px-4 py-2 hover:bg-secondary"
+          >
+            <p className="w-1/2 text-start">{element.name}</p>
+            <p className="w-1/2 text-end">{element.duration}</p>
+          </li>
+        ))}
+      </ol>
     </DialogContent>
   );
 }

@@ -4,12 +4,12 @@ import { Toaster } from "@/components/ui/toaster";
 
 export default function Layout() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-grow flex justify-center">
+      <main className="flex flex-grow justify-center">
         <Outlet />
       </main>
-      <footer className="w-full h-12 bg-primary"></footer>
+      <footer className="h-12 w-full bg-primary"></footer>
       <Toaster />
     </div>
   );
