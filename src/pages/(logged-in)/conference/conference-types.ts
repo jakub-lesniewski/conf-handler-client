@@ -3,7 +3,7 @@ export type TimelineElement = Session | Event;
 export type Session = {
   id: string;
   name: string;
-  duration: string;
+  duration: string; // 12:00 - 14:00
   city: string;
   street: string;
   building: string;
@@ -16,7 +16,7 @@ export type EventElement = Event | Lecture;
 export type Event = {
   id: string;
   name: string;
-  duration: string;
+  duration: string; // 12:00 - 14:00
 };
 
 export type Lecture = Event & {

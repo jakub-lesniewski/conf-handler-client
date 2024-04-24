@@ -12,7 +12,7 @@ type EventDialogProps = {
 export default function EventDialog({ event }: EventDialogProps) {
   return (
     <DialogContent>
-      <DialogHeader>
+      <DialogHeader className="text-start">
         <DialogTitle>{event.name}</DialogTitle>
       </DialogHeader>
       <p>Chyba powinień być jakiś opis ni?</p>

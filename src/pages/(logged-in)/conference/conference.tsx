@@ -1,25 +1,24 @@
+import ConferenceHeader from "./conference-header";
 import Timeline from "./timeline";
+import ConferenceFooter from "./conference-footer";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLoaderData } from "react-router-dom";
 import { TimelineElement } from "./conference-types";
-
-import ConferenceHeader from "./conference-header";
-import ConferenceFooter from "./conference-footer";
 
 export default function Conference() {
   const [currDate, setCurrDate] = useState<Date>(new Date());
 
   const timeline = useLoaderData() as TimelineElement[];
 
-  function handleSetNextDay() {
+  function handleSetNextDay(): void {
     const nextDay = new Date(currDate);
     nextDay.setDate(nextDay.getDate() + 1);
 
     setCurrDate(nextDay);
   }
 
-  function handleSetPrevDay() {
+  function handleSetPrevDay(): void {
     const prevDay = new Date(currDate);
     prevDay.setDate(prevDay.getDate() - 1);
 
