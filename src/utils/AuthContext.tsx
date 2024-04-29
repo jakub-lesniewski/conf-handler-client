@@ -1,4 +1,5 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext } from "react";
+import { useLocalStorage } from "usehooks-ts";
 
 type User = {
   id: string;
@@ -26,7 +27,7 @@ export function useAuth(): AuthContextType {
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useLocalStorage<User | null>("user", null);
 
   function login(user: User) {
     setUser(user);
