@@ -3,10 +3,8 @@ import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import Sidebar from "./sidebar";
 import { useAuth } from "@/lib/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-  const navigate = useNavigate();
   const { loggedUser } = useAuth();
   const { toast } = useToast();
 
