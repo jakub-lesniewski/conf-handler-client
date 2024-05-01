@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useContext } from "react";
 import { useLocalStorage } from "usehooks-ts";
 
-type User = {
+export type User = {
   id: string;
   name: string;
   surname: string;
@@ -9,7 +9,7 @@ type User = {
 };
 
 type AuthContextType = {
-  user: User | null;
+  loggedUser: User | null;
   login: (user: User) => void;
   logout: () => void;
 };
@@ -27,18 +27,21 @@ export function useAuth(): AuthContextType {
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useLocalStorage<User | null>("user", null);
+  const [loggedUser, setLoggedUser] = useLocalStorage<User | null>(
+    "loggedUser",
+    null,
+  );
 
   function login(user: User) {
-    setUser(user);
+    setLoggedUser(user);
   }
 
   function logout() {
-    setUser(null);
+    setLoggedUser(null);
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ loggedUser, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

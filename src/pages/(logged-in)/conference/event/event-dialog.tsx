@@ -14,8 +14,9 @@ export default function EventDialog({ event }: EventDialogProps) {
     <DialogContent>
       <DialogHeader className="text-start">
         <DialogTitle>{event.name}</DialogTitle>
+        <p>{event.duration}</p>
       </DialogHeader>
-      <p>Chyba powinień być jakiś opis ni?</p>
+      <p>Brief description of event.</p>
     </DialogContent>
   );
 }

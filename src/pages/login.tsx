@@ -19,9 +19,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Mail, Phone } from "lucide-react";
+import { authenticateUser } from "@/lib/api";
+import { User, useAuth } from "@/lib/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const formSchema = z.object({
     email: z
       .string()
@@ -38,8 +43,14 @@ export default function Login() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const user: User = await authenticateUser(values.email, values.password);
+      login(user);
+      navigate("/conference");
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   }
 
   return (
@@ -76,7 +87,7 @@ export default function Login() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="password" {...field} />
+                    <Input placeholder="password" {...field} type="password" />
                   </FormControl>
                   <FormDescription className="text-xs">
                     The token the organisers provided you with.

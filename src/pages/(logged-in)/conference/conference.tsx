@@ -30,12 +30,10 @@ export default function Conference() {
       <div className="flex h-full flex-col justify-between">
         <div>
           <ConferenceHeader currDate={currDate} />
-
           <CardContent className="w-full flex-1">
             <Timeline timeline={timeline} />
           </CardContent>
         </div>
-
         <ConferenceFooter
           handleSetPrevDay={handleSetPrevDay}
           handleSetNextDay={handleSetNextDay}

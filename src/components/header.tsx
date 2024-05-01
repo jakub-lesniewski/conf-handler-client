@@ -2,12 +2,16 @@ import { MailWarning } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import Sidebar from "./sidebar";
+import { useAuth } from "@/lib/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
+  const { loggedUser } = useAuth();
   const { toast } = useToast();
 
   return (
-    <header className="w-full bg-primary flex p-3 justify-between">
+    <header className="flex w-full justify-between bg-primary p-3">
       <MailWarning
         onClick={() => {
           toast({
@@ -15,14 +19,14 @@ export default function Header() {
             description: "There's been a change to conference schedule!",
             action: (
               <ToastAction altText="acknowledge">
-                <div className="border-2 py-1 px-2 rounded-lg">acknowledge</div>
+                <div className="rounded-lg border-2 px-2 py-1">acknowledge</div>
               </ToastAction>
             ),
           });
         }}
         className="cursor-pointer text-white"
       />
-      <Sidebar />
+      {loggedUser && <Sidebar />}
     </header>
   );
 }

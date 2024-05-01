@@ -28,7 +28,35 @@ export async function loader(): Promise<TimelineElement[]> {
           id: "lecture2",
           name: "Machine Learning Fundamentals",
           duration: "11:00 - 12:00",
-          abstract: "This lecture will introduce the fundamentals of machine learning.",
+          abstract:
+            "This lecture will introduce the fundamentals of machine learning.",
+          lecturer: "Dr. Emily Johnson",
+          topic: "Machine Learning",
+        },
+        {
+          id: "lecture2",
+          name: "Machine Learning Fundamentals",
+          duration: "11:00 - 12:00",
+          abstract:
+            "This lecture will introduce the fundamentals of machine learning.",
+          lecturer: "Dr. Emily Johnson",
+          topic: "Machine Learning",
+        },
+        {
+          id: "lecture2",
+          name: "Machine Learning Fundamentals",
+          duration: "11:00 - 12:00",
+          abstract:
+            "This lecture will introduce the fundamentals of machine learning.",
+          lecturer: "Dr. Emily Johnson",
+          topic: "Machine Learning",
+        },
+        {
+          id: "lecture2",
+          name: "Machine Learning Fundamentals",
+          duration: "11:00 - 12:00",
+          abstract:
+            "This lecture will introduce the fundamentals of machine learning.",
           lecturer: "Dr. Emily Johnson",
           topic: "Machine Learning",
         },
