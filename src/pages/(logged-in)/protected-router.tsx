@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { useAuth } from "@/lib/AuthContext";
 import { Button } from "@/components/ui/button";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type ProtectedRouteProps = {
   children: ReactNode;
