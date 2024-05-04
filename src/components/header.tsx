@@ -9,7 +9,7 @@ export default function Header() {
   const { toast } = useToast();
 
   return (
-    <header className="flex w-full justify-between bg-primary p-3">
+    <header className="flex h-[--header-height] w-full justify-between bg-primary p-3">
       <MailWarning
         onClick={() => {
           toast({

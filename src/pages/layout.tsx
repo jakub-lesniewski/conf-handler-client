@@ -6,12 +6,16 @@ export default function Layout() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-
-      <main className="flex flex-grow justify-center">
+      <main className="box-border flex min-h-[calc(100vh-var(--header-height))] flex-grow justify-center">
         <Outlet />
       </main>
-
-      <footer className="h-12 w-full bg-primary"></footer>
+      <footer className="w-full bg-primary p-4">
+        <p>bingus</p>
+        <p>bingus</p>
+        <p>bingus</p>
+        <p>bingus</p>
+        <p>bingus</p>
+      </footer>
       <Toaster />
     </div>
   );
