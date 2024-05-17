@@ -1,13 +1,13 @@
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { TimelineElement } from "@/types/TimelineElement";
-import { isSession } from "@/types/Session";
+import { Session, isSession } from "@/types/Session";
 import SessionItem from "./items/session-item";
 import EventItem from "./items/event-item";
 import SessionDialog from "./dialogs/session-dialog";
 import EventDialog from "./dialogs/event-dialog";
+import { Event } from "@/types/Event";
 
 type TimelineProps = {
-  timeline: TimelineElement[];
+  timeline: (Event | Session)[];
 };
 
 export default function Timeline({ timeline }: TimelineProps) {

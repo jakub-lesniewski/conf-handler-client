@@ -60,36 +60,6 @@ export async function loader(): Promise<TimelineElement[]> {
           lecturer: "Dr. Emily Johnson",
           topic: "Machine Learning",
         },
-        {
-          id: "event48",
-          name: "Networking Breakfast",
-          duration: "09:00 - 10:00",
-        },
-        {
-          id: "event49",
-          name: "Networking Breakfast",
-          duration: "09:00 - 10:00",
-        },
-        {
-          id: "event50",
-          name: "Networking Breakfast",
-          duration: "09:00 - 10:00",
-        },
-        {
-          id: "event55",
-          name: "Networking Breakfast",
-          duration: "09:00 - 10:00",
-        },
-        {
-          id: "event66",
-          name: "Networking Breakfast",
-          duration: "09:00 - 10:00",
-        },
-        {
-          id: "event77",
-          name: "Networking Breakfast",
-          duration: "09:00 - 10:00",
-        },
       ],
     },
     {
@@ -120,36 +90,6 @@ export async function loader(): Promise<TimelineElement[]> {
     {
       id: "event8",
       name: "Networking Lunch",
-      duration: "12:00 - 13:00",
-    },
-    {
-      id: "event9",
-      name: "Networking Lunch",
-      duration: "12:00 - 13:00",
-    },
-    {
-      id: "event11",
-      name: "Networking Lunch",
-      duration: "12:00 - 13:00",
-    },
-    {
-      id: "event222",
-      name: "Networking Lunch",
-      duration: "12:00 - 13:00",
-    },
-    {
-      id: "event432",
-      name: "Networking Lunch",
-      duration: "12:00 - 13:00",
-    },
-    {
-      id: "event2",
-      name: "Networking Lunch",
-      duration: "12:00 - 13:00",
-    },
-    {
-      id: "event312",
-      name: "Bingus",
       duration: "12:00 - 13:00",
     },
   ];
