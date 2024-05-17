@@ -17,7 +17,7 @@ export default function SessionDialog({
   session: { name, street, city, duration, building, roomNumber, eventList },
 }: SessionDialogProps) {
   return (
-    <DialogContent className="max-h-svh">
+    <DialogContent className="flex h-svh flex-col gap-3">
       <DialogHeader className="space-y-3">
         <DialogTitle className="text-start">{name}</DialogTitle>
         <div className="flex justify-between gap-6">
@@ -46,7 +46,7 @@ export default function SessionDialog({
         </div>
       </DialogHeader>
 
-      <ol className="mt-2 overflow-hidden rounded-lg border text-sm">
+      <ol className="mt-2 overflow-auto rounded-lg border text-sm">
         {eventList.map((element) =>
           isLecture(element) ? (
             <SessionLectureItem key={element.id} lecture={element} />

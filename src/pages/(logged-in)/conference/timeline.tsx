@@ -16,13 +16,13 @@ export default function Timeline({ timeline }: TimelineProps) {
       {timeline.map((element) => (
         <Dialog key={element.id}>
           <DialogTrigger asChild>
-            <li className="flex cursor-pointer items-center justify-between border-b px-4 py-2 shadow-sm hover:bg-secondary">
+            <div>
               {isSession(element) ? (
                 <SessionItem session={element} />
               ) : (
                 <EventItem event={element} />
               )}
-            </li>
+            </div>
           </DialogTrigger>
 
           {isSession(element) ? (

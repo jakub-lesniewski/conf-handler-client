@@ -26,19 +26,15 @@ export default function Conference() {
   }
 
   return (
-    <Card className="my-4 flex min-h-full w-[350px] flex-col justify-between">
-      <div className="flex h-full flex-col justify-between">
-        <div>
-          <ConferenceHeader currDate={currDate} />
-          <CardContent className="w-full flex-1">
-            <Timeline timeline={timeline} />
-          </CardContent>
-        </div>
-        <ConferenceFooter
-          handleSetPrevDay={handleSetPrevDay}
-          handleSetNextDay={handleSetNextDay}
-        />
-      </div>
+    <Card className="h-screen-[50px] my-4 flex w-[350px] flex-col">
+      <ConferenceHeader currDate={currDate} />
+      <CardContent className="flex-1 overflow-y-auto">
+        <Timeline timeline={timeline} />
+      </CardContent>
+      <ConferenceFooter
+        handleSetPrevDay={handleSetPrevDay}
+        handleSetNextDay={handleSetNextDay}
+      />
     </Card>
   );
 }

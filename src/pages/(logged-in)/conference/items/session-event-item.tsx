@@ -6,10 +6,7 @@ type SessionEventItemProps = {
 
 export default function SessionEventItem({ event }: SessionEventItemProps) {
   return (
-    <li
-      key={event.id}
-      className="cursor-pointer border-b bg-primary shadow-sm hover:bg-secondary"
-    >
+    <li key={event.id} className="cursor-pointer border-b bg-accent shadow-sm">
       <div className="ml-auto w-[98%]">
         <div className="flex justify-between bg-background px-4 py-2">
           <p className="text-start">{event.name}</p>

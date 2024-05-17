@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 export default function Layout() {
   return (
-    <div className="flex flex-col">
+    <div className="flex h-dvh flex-col">
       <Header />
       <main className="box-border flex min-h-[calc(100vh-var(--header-height))] flex-grow justify-center">
         <Outlet />
