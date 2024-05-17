@@ -1,4 +1,4 @@
-import { TimelineElement } from "./conference-types";
+import { TimelineElement } from "@/types/TimelineElement";
 
 export async function loader(): Promise<TimelineElement[]> {
   const timeline: TimelineElement[] = [
@@ -34,7 +34,7 @@ export async function loader(): Promise<TimelineElement[]> {
           topic: "Machine Learning",
         },
         {
-          id: "lecture2",
+          id: "lecture3",
           name: "Machine Learning Fundamentals",
           duration: "11:00 - 12:00",
           abstract:
@@ -43,7 +43,7 @@ export async function loader(): Promise<TimelineElement[]> {
           topic: "Machine Learning",
         },
         {
-          id: "lecture2",
+          id: "lecture4",
           name: "Machine Learning Fundamentals",
           duration: "11:00 - 12:00",
           abstract:
@@ -52,19 +52,104 @@ export async function loader(): Promise<TimelineElement[]> {
           topic: "Machine Learning",
         },
         {
-          id: "lecture2",
+          id: "lecture5",
           name: "Machine Learning Fundamentals",
           duration: "11:00 - 12:00",
           abstract:
             "This lecture will introduce the fundamentals of machine learning.",
           lecturer: "Dr. Emily Johnson",
           topic: "Machine Learning",
+        },
+        {
+          id: "event48",
+          name: "Networking Breakfast",
+          duration: "09:00 - 10:00",
+        },
+        {
+          id: "event49",
+          name: "Networking Breakfast",
+          duration: "09:00 - 10:00",
+        },
+        {
+          id: "event50",
+          name: "Networking Breakfast",
+          duration: "09:00 - 10:00",
+        },
+        {
+          id: "event55",
+          name: "Networking Breakfast",
+          duration: "09:00 - 10:00",
+        },
+        {
+          id: "event66",
+          name: "Networking Breakfast",
+          duration: "09:00 - 10:00",
+        },
+        {
+          id: "event77",
+          name: "Networking Breakfast",
+          duration: "09:00 - 10:00",
         },
       ],
     },
     {
+      id: "event3",
+      name: "Networking Lunch",
+      duration: "12:00 - 13:00",
+    },
+    {
+      id: "event4",
+      name: "Networking Lunch",
+      duration: "12:00 - 13:00",
+    },
+    {
+      id: "event5",
+      name: "Networking Lunch",
+      duration: "12:00 - 13:00",
+    },
+    {
+      id: "event6",
+      name: "Networking Lunch",
+      duration: "12:00 - 13:00",
+    },
+    {
+      id: "event7",
+      name: "Networking Lunch",
+      duration: "12:00 - 13:00",
+    },
+    {
+      id: "event8",
+      name: "Networking Lunch",
+      duration: "12:00 - 13:00",
+    },
+    {
+      id: "event9",
+      name: "Networking Lunch",
+      duration: "12:00 - 13:00",
+    },
+    {
+      id: "event11",
+      name: "Networking Lunch",
+      duration: "12:00 - 13:00",
+    },
+    {
+      id: "event222",
+      name: "Networking Lunch",
+      duration: "12:00 - 13:00",
+    },
+    {
+      id: "event432",
+      name: "Networking Lunch",
+      duration: "12:00 - 13:00",
+    },
+    {
       id: "event2",
       name: "Networking Lunch",
+      duration: "12:00 - 13:00",
+    },
+    {
+      id: "event312",
+      name: "Bingus",
       duration: "12:00 - 13:00",
     },
   ];

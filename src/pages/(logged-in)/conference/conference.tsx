@@ -4,7 +4,7 @@ import ConferenceFooter from "./conference-footer";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLoaderData } from "react-router-dom";
-import { TimelineElement } from "./conference-types";
+import { TimelineElement } from "@/types/TimelineElement";
 
 export default function Conference() {
   const [currDate, setCurrDate] = useState<Date>(new Date());

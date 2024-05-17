@@ -1,4 +1,4 @@
-import { Event } from "../conference-types";
+import { Event } from "@/types/Event";
 
 type EventItemProps = {
   event: Event;

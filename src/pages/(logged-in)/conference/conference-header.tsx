@@ -6,7 +6,7 @@ type ConferenceHeaderProps = {
 
 export default function ConferenceHeader({ currDate }: ConferenceHeaderProps) {
   return (
-    <CardHeader className="border-b">
+    <CardHeader className="border-b shadow-sm">
       <h2 className="text-lg font-bold tracking-widest">
         {currDate.toLocaleDateString("en-UK", { weekday: "long" })}
       </h2>

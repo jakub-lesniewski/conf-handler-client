@@ -1,9 +1,10 @@
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { TimelineElement, isSession } from "./conference-types";
-import EventItem from "./event/event-item";
-import SessionItem from "./session/session-item";
-import SessionDialog from "./session/session-dialog";
-import EventDialog from "./event/event-dialog";
+import { TimelineElement } from "@/types/TimelineElement";
+import { isSession } from "@/types/Session";
+import SessionItem from "./items/session-item";
+import EventItem from "./items/event-item";
+import SessionDialog from "./dialogs/session-dialog";
+import EventDialog from "./dialogs/event-dialog";
 
 type TimelineProps = {
   timeline: TimelineElement[];
@@ -15,7 +16,7 @@ export default function Timeline({ timeline }: TimelineProps) {
       {timeline.map((element) => (
         <Dialog key={element.id}>
           <DialogTrigger asChild>
-            <li className="flex cursor-pointer items-center justify-between border-b px-4 py-2 hover:bg-secondary">
+            <li className="flex cursor-pointer items-center justify-between border-b px-4 py-2 shadow-sm hover:bg-secondary">
               {isSession(element) ? (
                 <SessionItem session={element} />
               ) : (

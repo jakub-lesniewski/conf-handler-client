@@ -1,4 +1,4 @@
-import { Session } from "../conference-types";
+import { Session } from "@/types/Session";
 
 type SessionItemProps = {
   session: Session;
