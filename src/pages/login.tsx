@@ -54,7 +54,7 @@ export default function Login() {
   }
 
   return (
-    <Card className="my-auto h-full w-[350px] text-sm">
+    <Card className="my-auto w-[350px] text-sm">
       <CardHeader className="border-b py-2">
         <CardTitle className="text-lg">Login</CardTitle>
       </CardHeader>
@@ -90,7 +90,7 @@ export default function Login() {
                     <Input placeholder="password" {...field} type="password" />
                   </FormControl>
                   <FormDescription className="text-xs">
-                    The token the organisers provided you with.
+                    The password the organisers provided you with.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -100,25 +100,6 @@ export default function Login() {
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="flex flex-col items-start gap-1 border-t px-4 py-2">
-        <h4 className="scroll-m-20 font-semibold tracking-tight">
-          Need a hand?
-        </h4>
-        <div className="flex w-full justify-between">
-          <div className="flex flex-col">
-            <p>email: </p>
-            <p>phone:</p>
-          </div>
-          <div className="flex flex-col">
-            <a href="mailto:m.bluth@example.com">
-              golarz.filip@apk.uni.nieborow.com
-            </a>
-            <a href="tel:+123456789" className="text-end">
-              48 123 456 789
-            </a>
-          </div>
-        </div>
-      </CardFooter>
     </Card>
   );
 }
