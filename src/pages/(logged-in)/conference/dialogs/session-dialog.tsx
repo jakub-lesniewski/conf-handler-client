@@ -9,8 +9,8 @@ import {
 import { isLecture } from "@/types/Lecture";
 import { Session } from "@/types/Session";
 import SessionLectureItem from "../items/session-lecture-item";
-import SessionEventItem from "../items/session-event-item";
 import EventDialog from "./event-dialog";
+import EventItem from "../items/event-item";
 
 type SessionDialogProps = {
   session: Session;
@@ -41,9 +41,11 @@ export default function SessionDialog({ session }: SessionDialogProps) {
                 <p className="text-end font-semibold tracking-wide">
                   {building}
                 </p>
-                <p className="text-end font-semibold tracking-wide">
-                  {roomNumber}
-                </p>
+                {roomNumber && (
+                  <p className="text-end font-semibold tracking-wide">
+                    {roomNumber}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -58,7 +60,7 @@ export default function SessionDialog({ session }: SessionDialogProps) {
                 {isLecture(element) ? (
                   <SessionLectureItem lecture={element} />
                 ) : (
-                  <SessionEventItem event={element} />
+                  <EventItem event={element} />
                 )}
               </div>
             </DialogTrigger>

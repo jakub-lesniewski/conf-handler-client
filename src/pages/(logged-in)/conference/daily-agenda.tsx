@@ -7,13 +7,13 @@ import EventDialog from "./dialogs/event-dialog";
 import { Event } from "@/types/Event";
 
 type TimelineProps = {
-  timeline: (Event | Session)[];
+  schedule: (Event | Session)[];
 };
 
-export default function Timeline({ timeline }: TimelineProps) {
+export default function DailyAgenda({ schedule }: TimelineProps) {
   return (
     <ol>
-      {timeline.map((element) => (
+      {schedule.map((element) => (
         <Dialog key={element.id}>
           <DialogTrigger asChild>
             <div>

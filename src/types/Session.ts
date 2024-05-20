@@ -1,5 +1,6 @@
-import { EventElement } from "./Event";
-import { TimelineElement } from "./TimelineElement";
+import { EventElement, Event } from "./Event";
+
+export type TimelineElement = Session | Event;
 
 export type Session = {
   id: string;
@@ -8,7 +9,7 @@ export type Session = {
   city: string;
   street: string;
   building: string;
-  roomNumber: string;
+  roomNumber?: string;
   eventList: EventElement[];
 };
 

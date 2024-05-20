@@ -1,15 +1,19 @@
 import ConferenceHeader from "./conference-header";
-import Timeline from "./timeline";
-import ConferenceFooter from "./conference-footer";
-import { useState } from "react";
+import DailyAgenda from "./daily-agenda";
+import ConferenceNav from "./conference-nav";
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLoaderData } from "react-router-dom";
-import { TimelineElement } from "@/types/TimelineElement";
+import { formatDate } from "@/lib/utils";
+import { fetchTimeline } from "@/lib/api";
+import { Session } from "@/types/Session";
+import { Event } from "@/types/Event";
 
 export default function Conference() {
-  const [currDate, setCurrDate] = useState<Date>(new Date());
+  const [currDate, setCurrDate] = useState<Date>(new Date(2024, 5, 27));
+  const [schedule, setSchedule] = useState<(Event | Session)[]>();
 
-  const timeline = useLoaderData() as TimelineElement[];
+  // const schedule = useLoaderData() as (Session | Event)[];
 
   function handleSetNextDay(): void {
     const nextDay = new Date(currDate);
@@ -25,15 +29,29 @@ export default function Conference() {
     setCurrDate(prevDay);
   }
 
+  useEffect(() => {
+    async function fetchSchedule() {
+      try {
+        const formattedDate = formatDate(currDate);
+        const data = await fetchTimeline(formattedDate);
+        console.log(Object.values(data));
+      } catch (error) {
+        console.error("Error fetching schedule:", error);
+      }
+    }
+
+    fetchSchedule();
+  }, [currDate]);
+
   return (
     <Card className="h-screen-[50px] my-4 flex w-[350px] flex-col">
       <ConferenceHeader currDate={currDate} />
       <CardContent className="flex-1 overflow-y-auto">
-        <Timeline timeline={timeline} />
+        {/* <DailyAgenda schedule={schedule} /> */}
       </CardContent>
-      <ConferenceFooter
-        handleSetPrevDay={handleSetPrevDay}
+      <ConferenceNav
         handleSetNextDay={handleSetNextDay}
+        handleSetPrevDay={handleSetPrevDay}
       />
     </Card>
   );

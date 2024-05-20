@@ -18,11 +18,24 @@ export default function EventDialog({ event }: EventDialogProps) {
         <p>{event.duration}</p>
       </DialogHeader>
       {isLecture(event) && (
-        <div>
-          <p>{event.lecturer}</p>
-          <p>{event.topic}</p>
-          <a href={event.abstract}>{event.abstract}</a>
-        </div>
+        <>
+          <div className="flex gap-2">
+            <div className="text-start">
+              <p>Lecturer:</p>
+              <p>Topic:</p>
+            </div>
+            <div className="text-end">
+              <p className="font-semibold">{event.lecturer}</p>
+              <p className="font-semibold">{event.topic}</p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <p className="text-start">Abstract:</p>
+            <a href={event.abstract} className="text-end text-blue-600">
+              {event.abstract}
+            </a>
+          </div>
+        </>
       )}
     </DialogContent>
   );

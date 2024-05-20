@@ -3,15 +3,15 @@ import { MoveLeft, MoveRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { CardFooter } from "@/components/ui/card";
 
-type ConferenceFooterProps = {
+type ConferenceNavProps = {
   handleSetPrevDay: () => void;
   handleSetNextDay: () => void;
 };
 
-export default function ConferenceFooter({
+export default function ConferenceNav({
   handleSetPrevDay,
   handleSetNextDay,
-}: ConferenceFooterProps) {
+}: ConferenceNavProps) {
   return (
     <CardFooter className="flex justify-around border-t p-1">
       <Button onClick={handleSetPrevDay} variant="ghost" className="w-[140px]">

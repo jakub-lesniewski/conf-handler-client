@@ -20,7 +20,7 @@ export async function loader(): Promise<TimelineElement[]> {
           id: "lecture1",
           name: "Introduction to Artificial Intelligence",
           duration: "10:00 - 11:00",
-          abstract: "This lecture will cover the basics of AI.",
+          abstract: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
           lecturer: "Dr. John Smith",
           topic: "Artificial Intelligence",
         },
@@ -29,7 +29,7 @@ export async function loader(): Promise<TimelineElement[]> {
           name: "Machine Learning Fundamentals",
           duration: "11:00 - 12:00",
           abstract:
-            "This lecture will introduce the fundamentals of machine learning.",
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley",
           lecturer: "Dr. Emily Johnson",
           topic: "Machine Learning",
         },
@@ -38,7 +38,7 @@ export async function loader(): Promise<TimelineElement[]> {
           name: "Machine Learning Fundamentals",
           duration: "11:00 - 12:00",
           abstract:
-            "This lecture will introduce the fundamentals of machine learning.",
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley",
           lecturer: "Dr. Emily Johnson",
           topic: "Machine Learning",
         },
@@ -47,7 +47,7 @@ export async function loader(): Promise<TimelineElement[]> {
           name: "Machine Learning Fundamentals",
           duration: "11:00 - 12:00",
           abstract:
-            "This lecture will introduce the fundamentals of machine learning.",
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley",
           lecturer: "Dr. Emily Johnson",
           topic: "Machine Learning",
         },
@@ -56,7 +56,7 @@ export async function loader(): Promise<TimelineElement[]> {
           name: "Machine Learning Fundamentals",
           duration: "11:00 - 12:00",
           abstract:
-            "This lecture will introduce the fundamentals of machine learning.",
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley",
           lecturer: "Dr. Emily Johnson",
           topic: "Machine Learning",
         },
