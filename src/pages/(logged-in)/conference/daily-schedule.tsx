@@ -5,12 +5,13 @@ import SessionItem from "./items/session-item";
 import EventItem from "./items/event-item";
 import SessionDialog from "./dialogs/session-dialog";
 import EventDialog from "./dialogs/event-dialog";
+import SleepingCat from "@/components/sleeping-cat";
 
-type DailyAgendaProps = {
+type DailyScheduleProps = {
   schedule: (Event | Session)[];
 };
 
-export default function DailyAgenda({ schedule }: DailyAgendaProps) {
+export default function DailySchedule({ schedule }: DailyScheduleProps) {
   return (
     <ol>
       {schedule.length === 0 ? (
@@ -18,6 +19,7 @@ export default function DailyAgenda({ schedule }: DailyAgendaProps) {
           <p className="p-2 text-center text-muted-foreground">
             No events or sessions scheduled for today.
           </p>
+          <SleepingCat />
         </>
       ) : (
         schedule.map((element) => (

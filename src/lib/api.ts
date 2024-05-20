@@ -27,7 +27,6 @@ export async function fetchTimeline(
     const response = await axios.get(
       `http://localhost:8080/getTimeLineByDate?date=${date}`,
     );
-    // console.log(response.data);
     return response.data.response;
   } catch (error) {
     console.error("error", error);
