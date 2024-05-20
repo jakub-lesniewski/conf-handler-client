@@ -35,7 +35,7 @@ export default function SessionDialog({ session }: SessionDialogProps) {
             <div className="flex w-[150px] gap-4 text-start text-sm">
               <div>
                 <p>building:</p>
-                <p>room:</p>
+                {roomNumber && <p>room:</p>}
               </div>
               <div>
                 <p className="text-end font-semibold tracking-wide">

@@ -3,7 +3,6 @@ import DailyAgenda from "./daily-agenda";
 import ConferenceNav from "./conference-nav";
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { useLoaderData } from "react-router-dom";
 import { formatDate } from "@/lib/utils";
 import { fetchTimeline } from "@/lib/api";
 import { Session } from "@/types/Session";
@@ -12,8 +11,6 @@ import { Event } from "@/types/Event";
 export default function Conference() {
   const [currDate, setCurrDate] = useState<Date>(new Date(2024, 5, 27));
   const [schedule, setSchedule] = useState<(Event | Session)[]>();
-
-  // const schedule = useLoaderData() as (Session | Event)[];
 
   function handleSetNextDay(): void {
     const nextDay = new Date(currDate);
@@ -34,7 +31,8 @@ export default function Conference() {
       try {
         const formattedDate = formatDate(currDate);
         const data = await fetchTimeline(formattedDate);
-        console.log(Object.values(data));
+        setSchedule(data);
+        console.log(data);
       } catch (error) {
         console.error("Error fetching schedule:", error);
       }

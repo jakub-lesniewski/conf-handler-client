@@ -1,6 +1,7 @@
-import { Schedule } from "@/types/Schedule";
+import { Event } from "@/types/Event";
 import { User } from "./AuthContext";
 import axios from "axios";
+import { Session } from "@/types/Session";
 
 export async function authenticateUser(
   email: string,
@@ -19,13 +20,15 @@ export async function authenticateUser(
   }
 }
 
-export async function fetchTimeline(date: string): Promise<Schedule> {
+export async function fetchTimeline(
+  date: string,
+): Promise<(Event | Session)[]> {
   try {
     const response = await axios.get(
       `http://localhost:8080/getTimeLineByDate?date=${date}`,
     );
-    console.log(response.data);
-    return response.data;
+    // console.log(response.data);
+    return response.data.response;
   } catch (error) {
     console.error("error", error);
     throw error;

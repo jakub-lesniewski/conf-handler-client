@@ -1,37 +1,45 @@
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Session, isSession } from "@/types/Session";
+import { Event } from "@/types/Event";
 import SessionItem from "./items/session-item";
 import EventItem from "./items/event-item";
 import SessionDialog from "./dialogs/session-dialog";
 import EventDialog from "./dialogs/event-dialog";
-import { Event } from "@/types/Event";
 
-type TimelineProps = {
+type DailyAgendaProps = {
   schedule: (Event | Session)[];
 };
 
-export default function DailyAgenda({ schedule }: TimelineProps) {
+export default function DailyAgenda({ schedule }: DailyAgendaProps) {
   return (
     <ol>
-      {schedule.map((element) => (
-        <Dialog key={element.id}>
-          <DialogTrigger asChild>
-            <div>
-              {isSession(element) ? (
-                <SessionItem session={element} />
-              ) : (
-                <EventItem event={element} />
-              )}
-            </div>
-          </DialogTrigger>
+      {schedule.length === 0 ? (
+        <>
+          <p className="p-2 text-center text-muted-foreground">
+            No events or sessions scheduled for today.
+          </p>
+        </>
+      ) : (
+        schedule.map((element) => (
+          <Dialog key={element.id}>
+            <DialogTrigger asChild>
+              <div>
+                {isSession(element) ? (
+                  <SessionItem session={element} />
+                ) : (
+                  <EventItem event={element} />
+                )}
+              </div>
+            </DialogTrigger>
 
-          {isSession(element) ? (
-            <SessionDialog session={element} />
-          ) : (
-            <EventDialog event={element} />
-          )}
-        </Dialog>
-      ))}
+            {isSession(element) ? (
+              <SessionDialog session={element} />
+            ) : (
+              <EventDialog event={element} />
+            )}
+          </Dialog>
+        ))
+      )}
     </ol>
   );
 }

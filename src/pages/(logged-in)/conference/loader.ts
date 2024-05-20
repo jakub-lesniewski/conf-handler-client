@@ -1,7 +1,8 @@
-import { TimelineElement } from "@/types/TimelineElement";
+import { Event } from "@/types/Event";
+import { Session } from "@/types/Session";
 
-export async function loader(): Promise<TimelineElement[]> {
-  const timeline: TimelineElement[] = [
+export async function loader(): Promise<(Event | Session)[]> {
+  const timeline: (Event | Session)[] = [
     {
       id: "session1",
       name: "Morning Session",
