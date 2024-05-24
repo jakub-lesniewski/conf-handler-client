@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { loggedUser, login } = useAuth();
 
   const formSchema = z.object({
     email: z
@@ -27,6 +27,7 @@ export default function Login() {
       .min(1, { message: "This field has to be filled." })
       .email("This is not a valid email."),
     password: z.string().min(2).max(50),
+    serverError: z.string().optional(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -43,8 +44,12 @@ export default function Login() {
       login(user);
       navigate("/conference");
     } catch (error) {
-      console.error("Login error:", error);
+      console.error(error);
     }
+  }
+
+  if (loggedUser) {
+    navigate("/conference");
   }
 
   return (

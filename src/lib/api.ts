@@ -12,7 +12,6 @@ export async function authenticateUser(
       email: email,
       password: password,
     });
-    console.log(response.data.response);
     return response.data.response;
   } catch (error) {
     console.error("error", error);
