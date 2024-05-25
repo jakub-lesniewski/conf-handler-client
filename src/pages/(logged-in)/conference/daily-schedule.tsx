@@ -5,7 +5,6 @@ import SessionItem from "./items/session-item";
 import EventItem from "./items/event-item";
 import SessionDialog from "./dialogs/session-dialog";
 import EventDialog from "./dialogs/event-dialog";
-import SleepingCat from "@/components/sleeping-cat";
 
 type DailyScheduleProps = {
   schedule?: (Event | Session)[];
@@ -19,7 +18,6 @@ export default function DailySchedule({ schedule = [] }: DailyScheduleProps) {
           <p className="p-2 text-center text-muted-foreground">
             No events or sessions scheduled for today.
           </p>
-          <SleepingCat />
         </>
       ) : (
         schedule.map((element) => (

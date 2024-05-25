@@ -6,12 +6,16 @@ export type User = {
   name: string;
   surname: string;
   affiliation: string;
+  bookmarkedEvents: string[];
 };
 
 type AuthContextType = {
   loggedUser: User | null;
   login: (user: User) => void;
   logout: () => void;
+  addBookmarkedEvent: (eventId: string) => void;
+  removeBookmarkedEvent: (eventId: string) => void;
+  isBookmarkedEvent: (eventId: string) => boolean;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -32,16 +36,51 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     null,
   );
 
-  function login(user: User) {
+  function login(user: User): void {
     setLoggedUser(user);
   }
 
-  function logout() {
+  function logout(): void {
     setLoggedUser(null);
   }
 
+  function addBookmarkedEvent(eventId: string): void {
+    if (loggedUser) {
+      setLoggedUser({
+        ...loggedUser,
+        bookmarkedEvents: [...loggedUser.bookmarkedEvents, eventId],
+      });
+    }
+  }
+
+  function removeBookmarkedEvent(eventId: string): void {
+    if (loggedUser) {
+      setLoggedUser({
+        ...loggedUser,
+        bookmarkedEvents: loggedUser.bookmarkedEvents.filter(
+          (id) => id !== eventId,
+        ),
+      });
+    }
+  }
+
+  function isBookmarkedEvent(eventId: string): boolean {
+    if (loggedUser) {
+      return loggedUser?.bookmarkedEvents.includes(eventId);
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ loggedUser, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        loggedUser,
+        login,
+        logout,
+        addBookmarkedEvent,
+        removeBookmarkedEvent,
+        isBookmarkedEvent,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

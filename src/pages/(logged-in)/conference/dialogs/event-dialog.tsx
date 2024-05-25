@@ -1,16 +1,34 @@
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { useAuth } from "@/lib/AuthContext";
 import { Event } from "@/types/Event";
 import { Lecture, isLecture } from "@/types/Lecture";
+import { useState } from "react";
 
 type EventDialogProps = {
   event: Event | Lecture;
 };
 
 export default function EventDialog({ event }: EventDialogProps) {
+  const { addBookmarkedEvent, removeBookmarkedEvent, isBookmarkedEvent } =
+    useAuth();
+  const [isBookmarked, setIsBookmarked] = useState<boolean>(
+    isBookmarkedEvent(event.id),
+  );
+
+  function handleBookmarkChange(): void {
+    setIsBookmarked(!isBookmarked);
+
+    isBookmarked
+      ? removeBookmarkedEvent(event.id)
+      : addBookmarkedEvent(event.id);
+  }
+
   return (
     <DialogContent className="flex flex-col">
       <DialogHeader className="text-start">
@@ -37,6 +55,16 @@ export default function EventDialog({ event }: EventDialogProps) {
           </div>
         </>
       )}
+      <div className="flex items-center gap-2 self-end">
+        <Label htmlFor="event" className="font-semibold">
+          Bookmark?
+        </Label>
+        <Checkbox
+          id="event"
+          checked={isBookmarked}
+          onCheckedChange={handleBookmarkChange}
+        />
+      </div>
     </DialogContent>
   );
 }
