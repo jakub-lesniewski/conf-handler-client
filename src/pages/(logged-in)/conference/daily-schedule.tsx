@@ -8,10 +8,10 @@ import EventDialog from "./dialogs/event-dialog";
 import SleepingCat from "@/components/sleeping-cat";
 
 type DailyScheduleProps = {
-  schedule: (Event | Session)[];
+  schedule?: (Event | Session)[];
 };
 
-export default function DailySchedule({ schedule }: DailyScheduleProps) {
+export default function DailySchedule({ schedule = [] }: DailyScheduleProps) {
   return (
     <ol>
       {schedule.length === 0 ? (

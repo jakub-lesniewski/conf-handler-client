@@ -12,7 +12,7 @@ export async function authenticateUser(
       email: email,
       password: password,
     });
-    return response.data.response;
+    return response.data;
   } catch (error) {
     console.error("error", error);
     throw error;
@@ -26,7 +26,8 @@ export async function fetchTimeline(
     const response = await axios.get(
       `http://localhost:8080/getTimeLineByDate?date=${date}`,
     );
-    return response.data.response;
+    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error("error", error);
     throw error;

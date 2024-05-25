@@ -2,10 +2,15 @@ import ConferenceHeader from "./conference-header";
 import ConferenceNav from "./conference-nav";
 import DailySchedule from "./daily-schedule";
 import DailyScheduleSkeleton from "./daily-schedule-skeleton";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { fetchTimeline } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
+import { formatDate } from "@/lib/utils";
+
+const tabs: string[] = ["schedule", "bookmarked"];
 
 export default function Conference() {
   const [currDate, setCurrDate] = useState<Date>(new Date(2024, 5, 26));
@@ -15,7 +20,7 @@ export default function Conference() {
     isError,
   } = useQuery({
     queryKey: ["schedule", currDate],
-    queryFn: () => fetchTimeline(currDate.toLocaleDateString()),
+    queryFn: () => fetchTimeline(formatDate(currDate)),
   });
 
   function handleSetNextDay(): void {
@@ -37,15 +42,27 @@ export default function Conference() {
   return (
     <Card className="h-screen-[50px] my-4 flex w-[350px] flex-col">
       <ConferenceHeader currDate={currDate} />
-      <CardContent className="flex-1 overflow-y-auto">
-        {isError ? (
-          <div>Error fetching data</div>
-        ) : isLoading ? (
-          <DailyScheduleSkeleton />
-        ) : (
-          <DailySchedule schedule={schedule} />
-        )}
-      </CardContent>
+      <Tabs defaultValue={tabs[0]} className="flex-1">
+        <TabsList className="w-full">
+          {tabs.map((tab) => (
+            <TabsTrigger key={tab} value={tab} className="w-1/2">
+              {tab}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        <TabsContent value={tabs[0]}>
+          <CardContent className="overflow-y-auto">
+            {isError ? (
+              <div>Error fetching data</div>
+            ) : isLoading ? (
+              <DailyScheduleSkeleton />
+            ) : (
+              <DailySchedule schedule={schedule} />
+            )}
+          </CardContent>
+        </TabsContent>
+        <TabsContent value={tabs[1]}>bookmarked content</TabsContent>
+      </Tabs>
       <ConferenceNav
         handleSetNextDay={handleSetNextDay}
         handleSetPrevDay={handleSetPrevDay}
