@@ -16,6 +16,7 @@ type AuthContextType = {
   addBookmarkedEvent: (eventId: string) => void;
   removeBookmarkedEvent: (eventId: string) => void;
   isBookmarkedEvent: (eventId: string) => boolean;
+  clearBookmarkedEvents: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -24,7 +25,7 @@ export function useAuth(): AuthContextType {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error("use Auth must be within an AuthProvider");
+    throw new Error("useAuth must be within an AuthProvider");
   }
 
   return context;
@@ -66,7 +67,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   function isBookmarkedEvent(eventId: string): boolean {
     if (loggedUser) {
-      return loggedUser?.bookmarkedEvents.includes(eventId);
+      return loggedUser.bookmarkedEvents.includes(eventId);
+    }
+    return false;
+  }
+
+  function clearBookmarkedEvents(): void {
+    if (loggedUser) {
+      setLoggedUser({
+        ...loggedUser,
+        bookmarkedEvents: [],
+      });
     }
   }
 
@@ -79,6 +90,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         addBookmarkedEvent,
         removeBookmarkedEvent,
         isBookmarkedEvent,
+        clearBookmarkedEvents,
       }}
     >
       {children}

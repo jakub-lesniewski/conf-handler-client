@@ -53,12 +53,12 @@ export default function Conference() {
         <TabsContent value={tabs[0]}>
           <CardContent className="overflow-y-auto">
             {isError ? (
-              <DailyScheduleSkeleton />
-            ) : isLoading ? (
               <div className="p-4 text-muted-foreground">
                 <p>An error has occured while fetching your data.</p>
                 <p>Try reloading the page.</p>
               </div>
+            ) : isLoading ? (
+              <DailyScheduleSkeleton />
             ) : (
               <DailySchedule schedule={schedule} />
             )}

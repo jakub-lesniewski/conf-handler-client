@@ -30,7 +30,10 @@ export default function EventDialog({ event }: EventDialogProps) {
   }
 
   return (
-    <DialogContent className="flex flex-col">
+    <DialogContent
+      className="flex flex-col"
+      onOpenAutoFocus={() => setIsBookmarked(isBookmarkedEvent(event.id))}
+    >
       <DialogHeader className="text-start">
         <DialogTitle>{event.name}</DialogTitle>
         <p>{event.duration}</p>
