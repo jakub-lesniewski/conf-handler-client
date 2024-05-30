@@ -19,12 +19,27 @@ export async function authenticateUser(
   }
 }
 
-export async function fetchTimeline(
+export async function fetchSchedule(
   date: string,
 ): Promise<(Event | Session)[]> {
   try {
     const response = await axios.get(
       `http://localhost:8080/getTimeLineByDate?date=${date}`,
+    );
+    return response.data;
+  } catch (error) {
+    console.error("error", error);
+    throw error;
+  }
+}
+
+export async function fetchBookmarkedSchedule(
+  userId: string,
+  dateString: string,
+): Promise<(Event | Session)[]> {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/getBookmarkedEvents?date=${dateString}&id=${userId}`,
     );
     return response.data;
   } catch (error) {

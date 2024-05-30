@@ -3,40 +3,23 @@ import ConferenceNav from "./conference-nav";
 import DailySchedule from "./daily-schedule";
 import DailyScheduleSkeleton from "./daily-schedule-skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { fetchTimeline } from "@/lib/api";
-import { useQuery } from "@tanstack/react-query";
-import { formatDate } from "@/lib/utils";
+import { useConference } from "@/hooks/useConference";
 
 const tabs: string[] = ["schedule", "bookmarked"];
 
 export default function Conference() {
-  const [currDate, setCurrDate] = useState<Date>(new Date(2024, 5, 26));
   const {
-    data: schedule,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["schedule", currDate],
-    queryFn: () => fetchTimeline(formatDate(currDate)),
-  });
-
-  function handleSetNextDay(): void {
-    setCurrDate((prevDate) => {
-      const nextDay = new Date(prevDate);
-      nextDay.setDate(nextDay.getDate() + 1);
-      return nextDay;
-    });
-  }
-
-  function handleSetPrevDay(): void {
-    setCurrDate((prevDate) => {
-      const prevDay = new Date(prevDate);
-      prevDay.setDate(prevDay.getDate() - 1);
-      return prevDay;
-    });
-  }
+    currDate,
+    schedule,
+    isScheduleLoading,
+    isScheduleError,
+    bookmarkedSchedule,
+    isBookmarkedScheduleLoading,
+    isBookmarkedScheduleError,
+    handleSetNextDay,
+    handleSetPrevDay,
+  } = useConference();
 
   return (
     <Card className="h-screen-[50px] my-4 flex w-[350px] flex-col">
@@ -51,19 +34,33 @@ export default function Conference() {
         </TabsList>
         <TabsContent value={tabs[0]}>
           <CardContent className="overflow-y-auto">
-            {isError ? (
+            {isScheduleLoading ? (
+              <DailyScheduleSkeleton />
+            ) : isScheduleError ? (
               <div className="p-4 text-muted-foreground">
-                <p>An error has occured while fetching your data.</p>
+                <p>An error has occurred while fetching your data.</p>
                 <p>Try reloading the page.</p>
               </div>
-            ) : isLoading ? (
-              <DailyScheduleSkeleton />
             ) : (
               <DailySchedule schedule={schedule} />
             )}
           </CardContent>
         </TabsContent>
-        <TabsContent value={tabs[1]}>bookmarked content</TabsContent>
+
+        <TabsContent value={tabs[1]}>
+          <CardContent className="overflow-y-auto">
+            {isBookmarkedScheduleLoading ? (
+              <DailyScheduleSkeleton />
+            ) : isBookmarkedScheduleError ? (
+              <div className="p-4 text-muted-foreground">
+                <p>An error has occurred while fetching your data.</p>
+                <p>Try reloading the page.</p>
+              </div>
+            ) : (
+              <DailySchedule schedule={bookmarkedSchedule || []} />
+            )}
+          </CardContent>
+        </TabsContent>
       </Tabs>
       <ConferenceNav
         handleSetNextDay={handleSetNextDay}
