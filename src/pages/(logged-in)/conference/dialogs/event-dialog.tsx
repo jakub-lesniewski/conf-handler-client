@@ -9,7 +9,7 @@ import { useAuth } from "@/lib/AuthContext";
 import { addBookmark, removeBookmark } from "@/lib/api";
 import { Event } from "@/types/Event";
 import { Lecture, isLecture } from "@/types/Lecture";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
 type EventDialogProps = {
@@ -19,6 +19,7 @@ type EventDialogProps = {
 export default function EventDialog({ event }: EventDialogProps) {
   const { addBookmarkedEvent, removeBookmarkedEvent, isBookmarkedEvent } =
     useAuth();
+  const queryClient = useQueryClient();
   const [isBookmarked, setIsBookmarked] = useState<boolean>(
     isBookmarkedEvent(event.id),
   );
@@ -35,6 +36,7 @@ export default function EventDialog({ event }: EventDialogProps) {
       onSuccess: () => {
         setIsBookmarked(true);
         addBookmarkedEvent(event.id);
+        queryClient.invalidateQueries({ queryKey: ["bookmarkedSchedule"] });
       },
     });
 
@@ -48,6 +50,7 @@ export default function EventDialog({ event }: EventDialogProps) {
       onSuccess: () => {
         setIsBookmarked(false);
         removeBookmarkedEvent(event.id);
+        queryClient.invalidateQueries({ queryKey: ["bookmarkedSchedule"] });
       },
     });
 
