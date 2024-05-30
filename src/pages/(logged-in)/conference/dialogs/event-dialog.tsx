@@ -5,59 +5,27 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { useAuth } from "@/lib/AuthContext";
-import { addBookmark, removeBookmark } from "@/lib/api";
+import { useBookmarks } from "@/hooks/useBookmarks";
 import { Event } from "@/types/Event";
 import { Lecture, isLecture } from "@/types/Lecture";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 
 type EventDialogProps = {
   event: Event | Lecture;
 };
 
 export default function EventDialog({ event }: EventDialogProps) {
-  const { addBookmarkedEvent, removeBookmarkedEvent, isBookmarkedEvent } =
-    useAuth();
-  const queryClient = useQueryClient();
-  const [isBookmarked, setIsBookmarked] = useState<boolean>(
-    isBookmarkedEvent(event.id),
-  );
-
-  const { loggedUser } = useAuth();
-
-  const { mutateAsync: addBookmarkMutation, isPending: isPendingAdd } =
-    useMutation({
-      mutationFn: async () => {
-        if (loggedUser) {
-          await addBookmark(loggedUser.id, event.id);
-        }
-      },
-      onSuccess: () => {
-        setIsBookmarked(true);
-        addBookmarkedEvent(event.id);
-        queryClient.invalidateQueries({ queryKey: ["bookmarkedSchedule"] });
-      },
-    });
-
-  const { mutateAsync: removeBookmarkMutation, isPending: isPendingRemove } =
-    useMutation({
-      mutationFn: async () => {
-        if (loggedUser) {
-          await removeBookmark(loggedUser.id, event.id);
-        }
-      },
-      onSuccess: () => {
-        setIsBookmarked(false);
-        removeBookmarkedEvent(event.id);
-        queryClient.invalidateQueries({ queryKey: ["bookmarkedSchedule"] });
-      },
-    });
+  const {
+    isBookmarked,
+    isPendingAdd,
+    isPendingRemove,
+    handleBookmarkChange,
+    restoreBookmarkStatus,
+  } = useBookmarks(event);
 
   return (
     <DialogContent
       className="flex flex-col"
-      onOpenAutoFocus={() => setIsBookmarked(isBookmarkedEvent(event.id))}
+      onOpenAutoFocus={restoreBookmarkStatus}
     >
       <DialogHeader className="text-start">
         <DialogTitle>{event.name}</DialogTitle>
@@ -97,13 +65,7 @@ export default function EventDialog({ event }: EventDialogProps) {
           id="event"
           checked={isBookmarked}
           disabled={isPendingAdd || isPendingRemove}
-          onCheckedChange={(checked) => {
-            if (checked) {
-              addBookmarkMutation();
-            } else {
-              removeBookmarkMutation();
-            }
-          }}
+          onCheckedChange={handleBookmarkChange}
         />
       </div>
     </DialogContent>
