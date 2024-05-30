@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { loggedUser, login } = useAuth();
+  const { login } = useAuth();
 
   const formSchema = z.object({
     email: z
@@ -46,10 +46,6 @@ export default function Login() {
     } catch (error) {
       console.error(error);
     }
-  }
-
-  if (loggedUser) {
-    navigate("/conference");
   }
 
   return (

@@ -3,7 +3,6 @@ import ConferenceNav from "./conference-nav";
 import DailySchedule from "./daily-schedule";
 import DailyScheduleSkeleton from "./daily-schedule-skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { fetchTimeline } from "@/lib/api";

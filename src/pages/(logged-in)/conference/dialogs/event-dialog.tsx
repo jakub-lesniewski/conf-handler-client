@@ -6,8 +6,10 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/AuthContext";
+import { addBookmark, removeBookmark } from "@/lib/api";
 import { Event } from "@/types/Event";
 import { Lecture, isLecture } from "@/types/Lecture";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
 type EventDialogProps = {
@@ -21,13 +23,33 @@ export default function EventDialog({ event }: EventDialogProps) {
     isBookmarkedEvent(event.id),
   );
 
-  function handleBookmarkChange(): void {
-    setIsBookmarked(!isBookmarked);
+  const { loggedUser } = useAuth();
 
-    isBookmarked
-      ? removeBookmarkedEvent(event.id)
-      : addBookmarkedEvent(event.id);
-  }
+  const { mutateAsync: addBookmarkMutation, isPending: isPendingAdd } =
+    useMutation({
+      mutationFn: async () => {
+        if (loggedUser) {
+          await addBookmark(loggedUser.id, event.id);
+        }
+      },
+      onSuccess: () => {
+        setIsBookmarked(true);
+        addBookmarkedEvent(event.id);
+      },
+    });
+
+  const { mutateAsync: removeBookmarkMutation, isPending: isPendingRemove } =
+    useMutation({
+      mutationFn: async () => {
+        if (loggedUser) {
+          await removeBookmark(loggedUser.id, event.id);
+        }
+      },
+      onSuccess: () => {
+        setIsBookmarked(false);
+        removeBookmarkedEvent(event.id);
+      },
+    });
 
   return (
     <DialogContent
@@ -58,14 +80,27 @@ export default function EventDialog({ event }: EventDialogProps) {
           </div>
         </>
       )}
-      <div className="flex items-center gap-2 self-end">
+      <div className="flex items-center gap-2 self-end text-base">
         <Label htmlFor="event" className="font-semibold">
-          Bookmark?
+          {isPendingAdd
+            ? "Adding..."
+            : isPendingRemove
+              ? "Removing..."
+              : isBookmarked
+                ? "Bookmarked"
+                : "Bookmark"}
         </Label>
         <Checkbox
           id="event"
           checked={isBookmarked}
-          onCheckedChange={handleBookmarkChange}
+          disabled={isPendingAdd || isPendingRemove}
+          onCheckedChange={(checked) => {
+            if (checked) {
+              addBookmarkMutation();
+            } else {
+              removeBookmarkMutation();
+            }
+          }}
         />
       </div>
     </DialogContent>

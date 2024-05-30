@@ -32,3 +32,48 @@ export async function fetchTimeline(
     throw error;
   }
 }
+
+export async function addBookmark(
+  userId: string,
+  eventId: string,
+): Promise<void> {
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/addBookmark",
+      null,
+      {
+        params: {
+          idEvent: eventId,
+          idParticipant: userId,
+        },
+        maxBodyLength: Infinity,
+      },
+    );
+    console.log("Bookmark added successfully:", response.data);
+  } catch (error) {
+    console.error("Error adding bookmark:", error);
+    throw error;
+  }
+}
+
+export async function removeBookmark(
+  userId: string,
+  eventId: string,
+): Promise<void> {
+  try {
+    const response = await axios.delete(
+      "http://localhost:8080/removeBookmark",
+      {
+        params: {
+          idEvent: eventId,
+          idParticipant: userId,
+        },
+        maxBodyLength: Infinity,
+      },
+    );
+    console.log("Bookmark deleted successfully:", response.data);
+  } catch (error) {
+    console.error("Error deleting bookmark:", error);
+    throw error;
+  }
+}
