@@ -3,6 +3,7 @@ import { fetchBookmarkedSchedule, fetchSchedule } from "@/lib/api";
 import { formatDate } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { toast } from "sonner";
 
 //
 export function useConference(startDate: Date, endDate: Date) {
@@ -34,6 +35,7 @@ export function useConference(startDate: Date, endDate: Date) {
   function handleSetNextDay(): void {
     // TODO
     if (endDate === currDate) {
+      toast.error("You already are on the last day of the conference.");
       return;
     }
 
@@ -47,6 +49,7 @@ export function useConference(startDate: Date, endDate: Date) {
   function handleSetPrevDay(): void {
     // TODO
     if (startDate === currDate) {
+      toast.error("You already are on the first day of the conference.");
       return;
     }
 
