@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "./pages/login";
 import Layout from "./pages/layout";
-import Conference from "./pages/(logged-in)/conference/conference";
+import Conference, {
+  loader as conferenceLoader,
+} from "./pages/(logged-in)/conference/conference";
 import ErrorElement from "./pages/error-element";
 import ProtectedRoute from "./pages/(logged-in)/protected-route";
 
@@ -24,6 +26,7 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
         errorElement: <ErrorElement />,
+        loader: conferenceLoader,
       },
     ],
   },

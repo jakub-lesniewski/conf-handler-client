@@ -7,10 +7,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useConference } from "@/hooks/useConference";
 import { useLoaderData } from "react-router-dom";
 import { ConferenceDetails } from "@/types/ConferenceDetails";
+import { fetchConferenceDetails } from "@/lib/api";
 
 const tabs: string[] = ["schedule", "bookmarked"];
 
 export default function Conference() {
+  const { startDate, endDate } = useLoaderData() as ConferenceDetails;
+
   const {
     currDate,
     schedule,
@@ -70,4 +73,10 @@ export default function Conference() {
       />
     </Card>
   );
+}
+
+export async function loader() {
+  const data = fetchConferenceDetails();
+
+  return data;
 }
