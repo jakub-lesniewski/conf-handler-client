@@ -5,6 +5,8 @@ import DailyScheduleSkeleton from "./daily-schedule-skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { useConference } from "@/hooks/useConference";
+import { useLoaderData } from "react-router-dom";
+import { ConferenceDetails } from "@/types/ConferenceDetails";
 
 const tabs: string[] = ["schedule", "bookmarked"];
 
@@ -19,7 +21,7 @@ export default function Conference() {
     isBookmarkedScheduleError,
     handleSetNextDay,
     handleSetPrevDay,
-  } = useConference(new Date(2024, 5, 26));
+  } = useConference(new Date(startDate), new Date(endDate));
 
   return (
     <Card className="h-screen-[50px] my-4 flex w-[350px] flex-col">

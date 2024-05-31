@@ -2,6 +2,7 @@ import { Event } from "@/types/Event";
 import { User } from "./AuthContext";
 import axios from "axios";
 import { Session } from "@/types/Session";
+import { ConferenceDetails } from "@/types/ConferenceDetails";
 
 export async function authenticateUser(
   email: string,
@@ -12,6 +13,16 @@ export async function authenticateUser(
       email: email,
       password: password,
     });
+    return response.data;
+  } catch (error) {
+    console.error("error", error);
+    throw error;
+  }
+}
+
+export async function fetchConferenceDetails(): Promise<ConferenceDetails> {
+  try {
+    const response = await axios.get("http://localhost:8080/conferenceDetails");
     return response.data;
   } catch (error) {
     console.error("error", error);

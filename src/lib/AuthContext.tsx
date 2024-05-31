@@ -16,7 +16,6 @@ type AuthContextType = {
   addBookmarkedEvent: (eventId: string) => void;
   removeBookmarkedEvent: (eventId: string) => void;
   isBookmarkedEvent: (eventId: string) => boolean;
-  clearBookmarkedEvents: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -90,7 +89,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         addBookmarkedEvent,
         removeBookmarkedEvent,
         isBookmarkedEvent,
-        clearBookmarkedEvents,
       }}
     >
       {children}

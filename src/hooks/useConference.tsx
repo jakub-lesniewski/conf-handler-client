@@ -5,7 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
 
-//
 export function useConference(startDate: Date, endDate: Date) {
   const { loggedUser } = useAuth();
   const [currDate, setCurrDate] = useState<Date>(startDate);
@@ -33,30 +32,28 @@ export function useConference(startDate: Date, endDate: Date) {
   });
 
   function handleSetNextDay(): void {
-    // TODO
-    if (endDate === currDate) {
-      toast.error("You already are on the last day of the conference.");
-      return;
-    }
-
     setCurrDate((prevDate) => {
       const nextDay = new Date(prevDate);
       nextDay.setDate(nextDay.getDate() + 1);
-      return nextDay;
+      if (nextDay <= endDate) {
+        return nextDay;
+      } else {
+        toast.error("You are already at the last day of the conference");
+        return prevDate;
+      }
     });
   }
 
   function handleSetPrevDay(): void {
-    // TODO
-    if (startDate === currDate) {
-      toast.error("You already are on the first day of the conference.");
-      return;
-    }
-
     setCurrDate((prevDate) => {
       const prevDay = new Date(prevDate);
       prevDay.setDate(prevDay.getDate() - 1);
-      return prevDay;
+      if (prevDay >= startDate) {
+        return prevDay;
+      } else {
+        toast.error("You are already at the first day of the conference");
+        return prevDate;
+      }
     });
   }
 

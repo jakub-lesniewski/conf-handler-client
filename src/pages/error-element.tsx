@@ -1,21 +1,6 @@
 import { useRouteError } from "react-router-dom";
-
-type RouteError = {
-  data: string;
-  error: {
-    columnNumber: number;
-    fileName: string;
-    lineNumber: number;
-    message: string;
-    stack: string;
-  };
-  internal: boolean;
-  status: number;
-  statusText: string;
-};
-
 export default function ErrorPage() {
-  const error = useRouteError() as RouteError;
+  const error = useRouteError();
   console.log(error);
 
   return (
@@ -31,7 +16,8 @@ export default function ErrorPage() {
         <p>Sorry, an unexpected error has occurred.</p>
         <p>
           <i className="border-2 p-3 text-lg not-italic">
-            {error.statusText || error.error.message}
+            {(error as Error)?.message ||
+              (error as { statusText?: string })?.statusText}
           </i>
         </p>
       </div>

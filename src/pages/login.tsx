@@ -38,6 +38,8 @@ export default function Login() {
     },
   });
 
+  console.log(authenticateUser("joe@gmail.com", "password"));
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const user: User = await authenticateUser(values.email, values.password);

@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
   const navigate = useNavigate();
-  const { loggedUser, logout, clearBookmarkedEvents } = useAuth();
+  const { loggedUser, logout } = useAuth();
 
   return (
     <Sheet>
@@ -23,12 +23,6 @@ export default function Sidebar() {
         <SheetHeader>
           <SheetTitle>{`Welcome ${loggedUser?.name} ${loggedUser?.surname}`}</SheetTitle>
         </SheetHeader>
-        <Button
-          onClick={() => clearBookmarkedEvents()}
-          className="font-semibold"
-        >
-          Clear bookmarked events
-        </Button>
         <Button
           onClick={() => {
             logout();
