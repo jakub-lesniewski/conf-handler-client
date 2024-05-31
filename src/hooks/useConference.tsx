@@ -4,9 +4,10 @@ import { formatDate } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
-export function useConference() {
+//
+export function useConference(startDate: Date, endDate: Date) {
   const { loggedUser } = useAuth();
-  const [currDate, setCurrDate] = useState<Date>(new Date(2024, 5, 26));
+  const [currDate, setCurrDate] = useState<Date>(startDate);
 
   const {
     data: schedule,
@@ -31,6 +32,11 @@ export function useConference() {
   });
 
   function handleSetNextDay(): void {
+    // TODO
+    if (endDate === currDate) {
+      return;
+    }
+
     setCurrDate((prevDate) => {
       const nextDay = new Date(prevDate);
       nextDay.setDate(nextDay.getDate() + 1);
@@ -39,6 +45,11 @@ export function useConference() {
   }
 
   function handleSetPrevDay(): void {
+    // TODO
+    if (startDate === currDate) {
+      return;
+    }
+
     setCurrDate((prevDate) => {
       const prevDay = new Date(prevDate);
       prevDay.setDate(prevDay.getDate() - 1);

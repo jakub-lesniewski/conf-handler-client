@@ -19,7 +19,7 @@ export default function Conference() {
     isBookmarkedScheduleError,
     handleSetNextDay,
     handleSetPrevDay,
-  } = useConference();
+  } = useConference(new Date(2024, 5, 26));
 
   return (
     <Card className="h-screen-[50px] my-4 flex w-[350px] flex-col">

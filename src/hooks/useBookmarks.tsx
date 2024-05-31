@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { useAuth } from "@/lib/AuthContext";
 import { addBookmark, removeBookmark } from "@/lib/api";
 import { Event } from "@/types/Event";
@@ -31,6 +32,9 @@ export function useBookmarks(event: Event | Lecture) {
         addBookmarkedEvent(event.id);
         queryClient.invalidateQueries({ queryKey: ["bookmarkedSchedule"] });
       },
+      onError: () => {
+        toast.error("Failed to bookmark event");
+      },
     });
 
   const { mutateAsync: removeBookmarkMutation, isPending: isPendingRemove } =
@@ -44,6 +48,9 @@ export function useBookmarks(event: Event | Lecture) {
         setIsBookmarked(false);
         removeBookmarkedEvent(event.id);
         queryClient.invalidateQueries({ queryKey: ["bookmarkedSchedule"] });
+      },
+      onError: () => {
+        toast.error("Failed to unbookmark event");
       },
     });
 
