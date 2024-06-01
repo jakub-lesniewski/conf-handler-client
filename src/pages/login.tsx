@@ -50,7 +50,7 @@ export default function Login() {
     }
   }
   if (loggedUser) {
-    <Navigate to="/conference" />;
+    return <Navigate to="/conference" />;
   }
 
   return (

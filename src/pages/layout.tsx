@@ -1,7 +1,6 @@
 import Header from "@/components/header";
-import { Outlet } from "react-router-dom";
-
 import Footer from "@/components/footer";
+import { Outlet } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
 
 export default function Layout() {
