@@ -76,7 +76,11 @@ export default function Conference() {
 }
 
 export async function loader() {
-  const data = fetchConferenceDetails();
-
-  return data;
+  try {
+    const data = await fetchConferenceDetails();
+    return data;
+  } catch (error) {
+    console.error("Error fetching conference details:", error);
+    throw error; // Rethrow the error to be caught by the error boundary
+  }
 }

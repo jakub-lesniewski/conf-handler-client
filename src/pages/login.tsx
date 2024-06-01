@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { authenticateUser } from "@/lib/api";
 import { User, useAuth } from "@/lib/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -27,7 +27,6 @@ export default function Login() {
       .min(1, { message: "This field has to be filled." })
       .email("This is not a valid email."),
     password: z.string().min(2).max(50),
-    serverError: z.string().optional(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -38,21 +37,20 @@ export default function Login() {
     },
   });
 
-  console.log(authenticateUser("joe@gmail.com", "password"));
-
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const user: User = await authenticateUser(values.email, values.password);
       login(user);
       navigate("/conference");
     } catch (error) {
-      form.setError;
+      form.setError("password", {
+        message: "Failed to authenticate, please check your email and password",
+      });
       console.error(error);
     }
   }
-
   if (loggedUser) {
-    navigate("/conference");
+    <Navigate to="/conference" />;
   }
 
   return (

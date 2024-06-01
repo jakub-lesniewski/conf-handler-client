@@ -71,15 +71,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return false;
   }
 
-  function clearBookmarkedEvents(): void {
-    if (loggedUser) {
-      setLoggedUser({
-        ...loggedUser,
-        bookmarkedEvents: [],
-      });
-    }
-  }
-
   return (
     <AuthContext.Provider
       value={{
