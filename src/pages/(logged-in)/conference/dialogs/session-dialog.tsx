@@ -29,8 +29,8 @@ export default function SessionDialog({ session }: SessionDialogProps) {
   } = session;
 
   return (
-    <DialogContent className="flex h-svh flex-col gap-3">
-      <DialogHeader className="space-y-3">
+    <DialogContent className="flex flex-col gap-3">
+      <DialogHeader className="flex-shrink-0 space-y-3">
         <DialogTitle className="text-start">{name}</DialogTitle>
         <div className="flex justify-between gap-6">
           <div className="text-start text-sm">
