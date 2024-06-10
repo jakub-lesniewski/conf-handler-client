@@ -9,8 +9,8 @@ export default function Header() {
 
   return (
     <header className="flex h-[--header-height] w-full justify-between bg-primary p-3">
-      <MessageWarning />
-      <div className="flex items-center gap-2">
+      {loggedUser && <MessageWarning />}
+      <div className={`flex items-center gap-2 ${loggedUser ? "" : "ml-auto"}`}>
         <ThemeToggle />
         {loggedUser && <Sidebar />}
       </div>
