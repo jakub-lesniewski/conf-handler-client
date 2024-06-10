@@ -17,8 +17,16 @@ type SessionDialogProps = {
 };
 
 export default function SessionDialog({ session }: SessionDialogProps) {
-  const { name, street, city, duration, building, roomNumber, eventList } =
-    session;
+  const {
+    name,
+    street,
+    city,
+    duration,
+    building,
+    roomNumber,
+    eventList,
+    chairman,
+  } = session;
 
   return (
     <DialogContent className="flex h-svh flex-col gap-3">
@@ -30,6 +38,11 @@ export default function SessionDialog({ session }: SessionDialogProps) {
               {street}, {city}
             </DialogDescription>
             <p>{duration}</p>
+            {chairman && (
+              <p className="mt-2 text-base">
+                chairman: <span className="font-semibold">{chairman}</span>
+              </p>
+            )}
           </div>
           <div>
             <div className="flex w-[150px] gap-4 text-start text-sm">

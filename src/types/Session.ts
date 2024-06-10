@@ -6,6 +6,7 @@ export type Session = {
   id: string;
   name: string;
   duration: string; // 12:00 - 14:00
+  chairman?: string;
   city: string;
   street: string;
   building: string;

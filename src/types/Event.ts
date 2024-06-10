@@ -6,4 +6,5 @@ export type Event = {
   id: string;
   name: string;
   duration: string; // 12:00 - 14:00
+  description?: string;
 };
