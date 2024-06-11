@@ -10,7 +10,7 @@ export default function Layout() {
       <main className="box-border flex min-h-[calc(100vh-var(--header-height))] flex-grow justify-center">
         <Outlet />
       </main>
-      <Footer />
+      {/* <Footer /> */}
       <Toaster />
     </div>
   );

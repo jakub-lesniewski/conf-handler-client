@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-start gap-1 bg-primary px-4 py-2 text-white">
+    <footer className="flex flex-col items-start gap-1 bg-primary px-4 pt-2 text-white">
       <h4 className="font-semibold tracking-tight">Need a hand?</h4>
       <div className="flex w-full justify-between md:w-[350px]">
         <div className="flex flex-col">
