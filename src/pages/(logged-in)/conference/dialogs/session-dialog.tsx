@@ -38,11 +38,6 @@ export default function SessionDialog({ session }: SessionDialogProps) {
               {street}, {city}
             </DialogDescription>
             <p>{duration}</p>
-            {chairman && (
-              <p className="mt-2 text-base">
-                chairman: <span className="font-semibold">{chairman}</span>
-              </p>
-            )}
           </div>
           <div>
             <div className="flex w-[150px] gap-4 text-start text-sm">
@@ -63,6 +58,11 @@ export default function SessionDialog({ session }: SessionDialogProps) {
             </div>
           </div>
         </div>
+        {chairman && (
+          <p className="mt-2 self-start text-base">
+            chairman: <span className="font-semibold">{chairman}</span>
+          </p>
+        )}
       </DialogHeader>
 
       <ol className="mt-2 overflow-auto rounded-lg border text-sm">
