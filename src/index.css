@@ -56,8 +56,5 @@
   }
   body {
     @apply bg-background text-foreground;
-    @apply h-full;
-    @apply w-full;
-    @apply overflow-hidden;
   }
 }
