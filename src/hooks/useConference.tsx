@@ -32,22 +32,22 @@ export function useConference(startDate: Date, endDate: Date) {
   });
 
   function handleSetNextDay() {
-    const nextDate = new Date(currDate);
-    nextDate.setDate(currDate.getDate() + 1);
-    if (nextDate < endDate) {
-      setCurrDate(nextDate);
+    const nextDay = new Date(currDate);
+    nextDay.setDate(nextDay.getDate() + 1);
+    if (nextDay <= endDate) {
+      setCurrDate(nextDay);
     } else {
-      toast.info("You have reached the end of the conference");
+      toast.info("You are already at the last day of the conference.");
     }
   }
 
   function handleSetPrevDay() {
-    const prevDate = new Date(currDate);
-    prevDate.setDate(currDate.getDate() - 1);
-    if (prevDate > startDate) {
-      setCurrDate(prevDate);
+    const prevDay = new Date(currDate);
+    prevDay.setDate(prevDay.getDate() - 1);
+    if (prevDay >= startDate) {
+      setCurrDate(prevDay);
     } else {
-      toast.info("You have reached the beginning of the conference");
+      toast.info("You are already at the first day of the conference.");
     }
   }
 
