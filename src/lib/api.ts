@@ -4,28 +4,30 @@ import axios from "axios";
 import { Session } from "@/types/Session";
 import { ConferenceDetails } from "@/types/ConferenceDetails";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 export async function authenticateUser(
   email: string,
   password: string,
 ): Promise<User> {
   try {
-    const response = await axios.post("http://localhost:8080/authenticate", {
+    const response = await axios.post(`${BASE_URL}/authenticate`, {
       email: email,
       password: password,
     });
     return response.data;
   } catch (error) {
-    console.error("error", error);
+    console.error("Error authenticating user:", error);
     throw error;
   }
 }
 
 export async function fetchConferenceDetails(): Promise<ConferenceDetails> {
   try {
-    const response = await axios.get("http://localhost:8080/conferenceDetails");
+    const response = await axios.get(`${BASE_URL}/conferenceDetails`);
     return response.data;
   } catch (error) {
-    console.error("error", error);
+    console.error("Error fetching conference details:", error);
     throw error;
   }
 }
@@ -35,11 +37,11 @@ export async function fetchSchedule(
 ): Promise<(Event | Session)[]> {
   try {
     const response = await axios.get(
-      `http://localhost:8080/getTimeLineByDate?date=${date}`,
+      `${BASE_URL}/getTimeLineByDate?date=${date}`,
     );
     return response.data;
   } catch (error) {
-    console.error("error", error);
+    console.error("Error fetching schedule:", error);
     throw error;
   }
 }
@@ -49,12 +51,15 @@ export async function fetchBookmarkedSchedule(
   dateString: string,
 ): Promise<(Event | Session)[]> {
   try {
-    const response = await axios.get(
-      `http://localhost:8080/getBookmarkedEvents?date=${dateString}&id=${userId}`,
-    );
+    const response = await axios.get(`${BASE_URL}/getBookmarkedEvents`, {
+      params: {
+        date: dateString,
+        id: userId,
+      },
+    });
     return response.data;
   } catch (error) {
-    console.error("error", error);
+    console.error("Error fetching bookmarked schedule:", error);
     throw error;
   }
 }
@@ -64,17 +69,12 @@ export async function addBookmark(
   eventId: string,
 ): Promise<void> {
   try {
-    const response = await axios.post(
-      "http://localhost:8080/addBookmark",
-      null,
-      {
-        params: {
-          idEvent: eventId,
-          idParticipant: userId,
-        },
-        maxBodyLength: Infinity,
+    const response = await axios.post(`${BASE_URL}/addBookmark`, null, {
+      params: {
+        idEvent: eventId,
+        idParticipant: userId,
       },
-    );
+    });
     console.log("Bookmark added successfully:", response.data);
   } catch (error) {
     console.error("Error adding bookmark:", error);
@@ -87,16 +87,12 @@ export async function removeBookmark(
   eventId: string,
 ): Promise<void> {
   try {
-    const response = await axios.delete(
-      "http://localhost:8080/removeBookmark",
-      {
-        params: {
-          idEvent: eventId,
-          idParticipant: userId,
-        },
-        maxBodyLength: Infinity,
+    const response = await axios.delete(`${BASE_URL}/removeBookmark`, {
+      params: {
+        idEvent: eventId,
+        idParticipant: userId,
       },
-    );
+    });
     console.log("Bookmark deleted successfully:", response.data);
   } catch (error) {
     console.error("Error deleting bookmark:", error);
