@@ -4,9 +4,9 @@ import { Toaster } from "@/components/ui/sonner";
 
 export default function Layout() {
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-svh flex-col">
       <Header />
-      <main className="box-border flex min-h-[calc(100vh-var(--header-height))] flex-grow justify-center">
+      <main className="mb-8 box-border flex min-h-[calc(100vh-var(--header-height))] flex-grow justify-center">
         <Outlet />
       </main>
       <Toaster />
