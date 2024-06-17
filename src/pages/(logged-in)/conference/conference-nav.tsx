@@ -12,11 +12,11 @@ export default function ConferenceNav({
   handleSetNextDay,
 }: ConferenceNavProps) {
   return (
-    <CardFooter className="flex justify-around border-t p-1">
-      <Button onClick={handleSetPrevDay} variant="ghost" className="w-[140px]">
+    <CardFooter className="flex w-full justify-around border-t p-1">
+      <Button onClick={handleSetPrevDay} variant="ghost" className="w-1/2">
         <MoveLeft strokeWidth={1} className="mr-2" /> previous day
       </Button>
-      <Button onClick={handleSetNextDay} variant="ghost" className="w-[140px]">
+      <Button onClick={handleSetNextDay} variant="ghost" className="w-1/2">
         next day
         <MoveRight strokeWidth={1} className="ml-2" />
       </Button>

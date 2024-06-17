@@ -31,30 +31,24 @@ export function useConference(startDate: Date, endDate: Date) {
     },
   });
 
-  function handleSetNextDay(): void {
-    setCurrDate((prevDate) => {
-      const nextDay = new Date(prevDate);
-      nextDay.setDate(nextDay.getDate() + 1);
-      if (nextDay <= endDate) {
-        return nextDay;
-      } else {
-        toast.error("You are already at the last day of the conference");
-        return prevDate;
-      }
-    });
+  function handleSetNextDay() {
+    const nextDate = new Date(currDate);
+    nextDate.setDate(currDate.getDate() + 1);
+    if (nextDate < endDate) {
+      setCurrDate(nextDate);
+    } else {
+      toast.info("You have reached the end of the conference");
+    }
   }
 
-  function handleSetPrevDay(): void {
-    setCurrDate((prevDate) => {
-      const prevDay = new Date(prevDate);
-      prevDay.setDate(prevDay.getDate() - 1);
-      if (prevDay >= startDate) {
-        return prevDay;
-      } else {
-        toast.error("You are already at the first day of the conference");
-        return prevDate;
-      }
-    });
+  function handleSetPrevDay() {
+    const prevDate = new Date(currDate);
+    prevDate.setDate(currDate.getDate() - 1);
+    if (prevDate > startDate) {
+      setCurrDate(prevDate);
+    } else {
+      toast.info("You have reached the beginning of the conference");
+    }
   }
 
   return {
