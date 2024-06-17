@@ -2,14 +2,12 @@ import ConferenceHeader from "./conference-header";
 import ConferenceNav from "./conference-nav";
 import DailySchedule from "./daily-schedule";
 import DailyScheduleSkeleton from "./daily-schedule-skeleton";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { useConference } from "@/hooks/useConference";
 import { useLoaderData } from "react-router-dom";
 import { ConferenceDetails } from "@/types/ConferenceDetails";
 import { fetchConferenceDetails } from "@/lib/api";
-
-const tabs: string[] = ["schedule", "bookmarked"];
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Conference() {
   const { startDate, endDate } = useLoaderData() as ConferenceDetails;
@@ -27,18 +25,14 @@ export default function Conference() {
   } = useConference(new Date(startDate), new Date(endDate));
 
   return (
-    <Card className="h-screen-[50px] my-4 flex w-[350px] flex-col">
+    <Card className="my-4 flex w-[350px] flex-col">
       <ConferenceHeader currDate={currDate} />
-      <Tabs defaultValue={tabs[0]} className="flex-1">
-        <TabsList className="w-full">
-          {tabs.map((tab) => (
-            <TabsTrigger key={tab} value={tab} className="w-1/2">
-              {tab}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        <TabsContent value={tabs[0]}>
-          <CardContent className="overflow-y-auto">
+      <Tabs
+        defaultValue="schedule"
+        className="flex h-full flex-col overflow-hidden"
+      >
+        <TabsContent value="schedule" className="flex-grow overflow-auto">
+          <CardContent>
             {isScheduleLoading ? (
               <DailyScheduleSkeleton />
             ) : isScheduleError ? (
@@ -52,8 +46,8 @@ export default function Conference() {
           </CardContent>
         </TabsContent>
 
-        <TabsContent value={tabs[1]}>
-          <CardContent className="overflow-y-auto">
+        <TabsContent value="bookmarked" className="flex-grow overflow-auto">
+          <CardContent>
             {isBookmarkedScheduleLoading ? (
               <DailyScheduleSkeleton />
             ) : isBookmarkedScheduleError ? (
@@ -62,15 +56,26 @@ export default function Conference() {
                 <p>Try reloading the page.</p>
               </div>
             ) : (
-              <DailySchedule schedule={bookmarkedSchedule || []} />
+              <DailySchedule schedule={bookmarkedSchedule} />
             )}
           </CardContent>
         </TabsContent>
+
+        <div className="flex-shrink-0">
+          <TabsList className="flex border-t">
+            <TabsTrigger value="schedule" className="w-1/2">
+              schedule
+            </TabsTrigger>
+            <TabsTrigger value="bookmarked" className="w-1/2">
+              bookmarked
+            </TabsTrigger>
+          </TabsList>
+          <ConferenceNav
+            handleSetNextDay={handleSetNextDay}
+            handleSetPrevDay={handleSetPrevDay}
+          />
+        </div>
       </Tabs>
-      <ConferenceNav
-        handleSetNextDay={handleSetNextDay}
-        handleSetPrevDay={handleSetPrevDay}
-      />
     </Card>
   );
 }

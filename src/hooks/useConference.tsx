@@ -60,9 +60,9 @@ export function useConference(startDate: Date, endDate: Date) {
   return {
     currDate,
     schedule,
+    bookmarkedSchedule,
     isScheduleError,
     isScheduleLoading,
-    bookmarkedSchedule,
     isBookmarkedScheduleLoading,
     isBookmarkedScheduleError,
     handleSetNextDay,
