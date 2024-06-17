@@ -59,7 +59,7 @@ export default function SessionDialog({ session }: SessionDialogProps) {
           </div>
         </div>
         {chairman && (
-          <p className="mt-2 self-start text-base">
+          <p className="mt-2 text-left text-base">
             chairman: <span className="font-semibold">{chairman}</span>
           </p>
         )}

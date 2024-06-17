@@ -44,10 +44,26 @@ export default function EventDialog({ event }: EventDialogProps) {
             </div>
           </div>
           <div className="flex gap-2">
-            <p className="text-start">Abstract:</p>
-            <a href={event.abstract} className="text-end text-blue-600">
-              {event.abstract}
-            </a>
+            {event.abstract && (
+              <>
+                <p className="text-start">Abstract:</p>
+                <a
+                  href={event.abstract}
+                  className="text-end text-blue-600"
+                  target="_blank"
+                >
+                  {event.abstract}
+                </a>
+              </>
+            )}
+          </div>
+          <div className="flex gap-2">
+            {event.chairman && (
+              <div className="flex gap-2">
+                <p className="text-start">Chairman:</p>
+                <p className="text-end font-semibold">{event.chairman}</p>
+              </div>
+            )}
           </div>
         </>
       )}

@@ -4,6 +4,7 @@ export type Lecture = Event & {
   abstract: string;
   lecturer: string;
   topic: string;
+  chairman?: string;
 };
 
 export function isLecture(element: EventElement): element is Lecture {
