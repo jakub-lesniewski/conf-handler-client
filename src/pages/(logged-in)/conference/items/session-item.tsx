@@ -13,7 +13,9 @@ export default function SessionItem({ session }: SessionItemProps) {
             <p className="text-sm font-semibold">{session.name}</p>
             <p className="text-sm">{session.roomNumber}</p>
           </div>
-          <p className="text-sm font-semibold">{session.duration}</p>
+          <p className="whitespace-nowrap text-sm font-semibold">
+            {session.duration}
+          </p>
         </div>
       </div>
     </li>
