@@ -17,7 +17,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   return (
     <div className="my-auto flex flex-col items-center gap-4 px-4">
-      <h1 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+      <h1 className="text-2xl font-semibold tracking-tight">
         You do no have access to this content :(
       </h1>
       <img

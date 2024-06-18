@@ -6,7 +6,7 @@ export default function Layout() {
   return (
     <div className="flex h-svh flex-col">
       <Header />
-      <main className="flex min-h-[calc(100vh-var(--header-height))] flex-grow justify-center">
+      <main className="flex min-h-[calc(100svh-var(--header-height))] flex-grow justify-center">
         <Outlet />
       </main>
       <Toaster />
