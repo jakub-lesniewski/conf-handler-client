@@ -24,7 +24,7 @@ export default function EventDialog({ event }: EventDialogProps) {
 
   return (
     <DialogContent
-      className="flex flex-col"
+      className="flex flex-col overflow-auto"
       onOpenAutoFocus={restoreBookmarkStatus}
     >
       <DialogHeader className="text-start">
@@ -84,6 +84,7 @@ export default function EventDialog({ event }: EventDialogProps) {
           onCheckedChange={handleBookmarkChange}
         />
       </div>
+      {event.description && <p className="text-sm">{event.description}</p>}
     </DialogContent>
   );
 }
