@@ -16,8 +16,10 @@ export default function Sidebar() {
 
   return (
     <Sheet>
-      <SheetTrigger>
-        <Menu className="cursor-pointer text-white" />
+      <SheetTrigger asChild>
+        <Button size="icon">
+          <Menu className="cursor-pointer text-white" />
+        </Button>
       </SheetTrigger>
       <SheetContent className="flex flex-col">
         <SheetHeader>

@@ -25,7 +25,7 @@ export default function Conference() {
   } = useConference(new Date(startDate), new Date(endDate));
 
   return (
-    <Card className="my-4 flex w-[350px] flex-col">
+    <Card className="m-2 flex w-screen flex-col">
       <ConferenceHeader currDate={currDate} />
       <Tabs
         defaultValue="schedule"
