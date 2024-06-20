@@ -32,34 +32,32 @@ export default function SessionDialog({ session }: SessionDialogProps) {
     <DialogContent className="flex h-svh flex-col gap-3 overflow-auto">
       <DialogHeader className="space-y-3">
         <DialogTitle className="text-start">{name}</DialogTitle>
-        <div className="flex justify-between gap-6">
+        <div className="flex justify-between gap-6 border-b pb-2">
           <div className="text-start text-sm">
-            <DialogDescription>
-              {street}, {city}
-            </DialogDescription>
-            <p>{duration}</p>
-          </div>
-          <div>
-            <div className="flex w-[150px] gap-4 text-start text-sm">
-              <div>
-                <p>building:</p>
-                {roomNumber && <p>room:</p>}
-              </div>
-              <div>
-                <p className="text-end font-semibold tracking-wide">
-                  {building}
+            <DialogDescription className="flex justify-between">
+              <div className="w-1/2">
+                <p>
+                  {street}, {city}
                 </p>
+                <p className="bg-red text-sm text-foreground">{duration}</p>
+              </div>
+              <div className="w-auto text-foreground">
+                <div className="flex gap-3">
+                  <p>building:</p>
+                  <p>{building}</p>
+                </div>
                 {roomNumber && (
-                  <p className="text-end font-semibold tracking-wide">
-                    {roomNumber}
-                  </p>
+                  <div className="flex gap-3">
+                    <p>room:</p>
+                    <p>{roomNumber}</p>
+                  </div>
                 )}
               </div>
-            </div>
+            </DialogDescription>
           </div>
         </div>
         {chairman && (
-          <p className="mt-2 text-left text-base">
+          <p className="text-left text-base">
             chairman: <span className="font-semibold">{chairman}</span>
           </p>
         )}

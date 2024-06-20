@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   DialogContent,
@@ -22,52 +23,45 @@ export default function EventDialog({ event }: EventDialogProps) {
     restoreBookmarkStatus,
   } = useBookmarks(event);
 
+  const { name, duration, description } = event;
+
   return (
     <DialogContent
       className="flex flex-col overflow-auto"
       onOpenAutoFocus={restoreBookmarkStatus}
     >
-      <DialogHeader className="text-start">
-        <DialogTitle>{event.name}</DialogTitle>
-        <p>{event.duration}</p>
+      <DialogHeader className="border-b pb-2 text-start">
+        <DialogTitle>{name}</DialogTitle>
+        <p className="text-sm">{duration}</p>
       </DialogHeader>
       {isLecture(event) && (
         <>
-          <div className="flex gap-2">
-            <div className="text-start">
+          <div className="flex flex-col gap-2  border-b pb-2">
+            <div className="flex gap-3">
               <p>Lecturer:</p>
-              <p>Topic:</p>
-            </div>
-            <div className="text-end">
               <p className="font-semibold">{event.lecturer}</p>
+            </div>
+            <div className="flex gap-3">
+              <p>Topic:</p>
               <p className="font-semibold">{event.topic}</p>
             </div>
-          </div>
-          <div className="flex gap-2">
-            {event.abstract && (
-              <>
-                <p className="text-start">Abstract:</p>
-                <a
-                  href={event.abstract}
-                  className="text-end text-blue-600"
-                  target="_blank"
-                >
-                  {event.abstract}
-                </a>
-              </>
+            {event.chairman && (
+              <div className="flex gap-2">
+                <p>Chairman:</p>
+                <p className="font-semibold">{event.chairman}</p>
+              </div>
             )}
           </div>
           <div className="flex gap-2">
-            {event.chairman && (
-              <div className="flex gap-2">
-                <p className="text-start">Chairman:</p>
-                <p className="text-end font-semibold">{event.chairman}</p>
-              </div>
+            {event.abstract && (
+              <a href={event.abstract} target="_blank">
+                <Button>See the abstract document.</Button>
+              </a>
             )}
           </div>
         </>
       )}
-      <div className="flex items-center gap-2 self-end text-base">
+      <div className="flex items-center gap-2 self-end">
         <Label htmlFor="event" className="font-semibold">
           {isPendingAdd
             ? "Adding..."
@@ -84,7 +78,7 @@ export default function EventDialog({ event }: EventDialogProps) {
           onCheckedChange={handleBookmarkChange}
         />
       </div>
-      {event.description && <p className="text-sm">{event.description}</p>}
+      {description && <p className="text-sm">{description}</p>}
     </DialogContent>
   );
 }

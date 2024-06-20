@@ -1,4 +1,5 @@
-import { EventElement, Event } from "./Event";
+import { Event } from "./Event";
+import { Lecture } from "./Lecture";
 
 export type TimelineElement = Session | Event;
 
@@ -11,7 +12,7 @@ export type Session = {
   street: string;
   building: string;
   roomNumber?: string;
-  eventList: EventElement[];
+  eventList: (Event | Lecture)[];
 };
 
 export function isSession(element: TimelineElement): element is Session {
