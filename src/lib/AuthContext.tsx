@@ -1,13 +1,6 @@
+import { User } from "@/types/User";
 import { ReactNode, createContext, useContext } from "react";
 import { useLocalStorage } from "usehooks-ts";
-
-export type User = {
-  id: string;
-  name: string;
-  surname: string;
-  affiliation: string;
-  bookmarkedEvents: string[];
-};
 
 type AuthContextType = {
   loggedUser: User | null;

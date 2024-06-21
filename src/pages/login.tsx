@@ -54,7 +54,7 @@ export default function Login() {
   }
 
   return (
-    <Card className="my-auto w-[350px] text-sm">
+    <Card className="my-auto w-[350px] pb-4 text-sm">
       <CardHeader className="border-b py-2">
         <CardTitle className="text-lg">Login</CardTitle>
       </CardHeader>
