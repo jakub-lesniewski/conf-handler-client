@@ -1,3 +1,5 @@
+import { UserEvent } from "./UserEvent";
+
 export type User = {
   id: string;
   title?: string;
@@ -5,4 +7,5 @@ export type User = {
   surname: string;
   affiliation: string;
   bookmarkedEvents: string[];
+  involvedInEvents: UserEvent[];
 };

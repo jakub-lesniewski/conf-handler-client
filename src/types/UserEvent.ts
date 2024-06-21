@@ -1,6 +1,6 @@
 export type UserEvent = {
   name: string;
   duration: string;
-  date: Date;
+  date: string;
   function: string;
 };

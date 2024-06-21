@@ -14,8 +14,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authenticateUser } from "@/lib/api";
-import { User, useAuth } from "@/lib/AuthContext";
+import { useAuth } from "@/lib/AuthContext";
 import { Navigate, useNavigate } from "react-router-dom";
+import { User } from "@/types/User";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ export default function Login() {
   }
 
   return (
-    <Card className="my-auto w-[350px] pb-4 text-sm">
+    <Card className="my-auto w-[350px] shrink-0 pb-4 text-sm">
       <CardHeader className="border-b py-2">
         <CardTitle className="text-lg">Login</CardTitle>
       </CardHeader>
