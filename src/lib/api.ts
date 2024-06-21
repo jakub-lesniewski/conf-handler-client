@@ -1,8 +1,8 @@
 import { Event } from "@/types/Event";
-import { User } from "./AuthContext";
 import axios from "axios";
 import { Session } from "@/types/Session";
 import { ConferenceDetails } from "@/types/ConferenceDetails";
+import { User } from "@/types/User";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
