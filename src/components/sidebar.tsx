@@ -23,7 +23,7 @@ export default function Sidebar() {
   const navigate = useNavigate();
   const { loggedUser, logout } = useAuth();
   const [openEvent, setOpenEvent] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState<UserEvent>(null);
+  const [selectedEvent, setSelectedEvent] = useState<UserEvent | null>(null);
 
   function handleSelectEvent(event: UserEvent) {
     setOpenEvent(true);
