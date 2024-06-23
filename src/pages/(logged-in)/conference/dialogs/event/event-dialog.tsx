@@ -8,13 +8,14 @@ import { Event } from "@/types/Event";
 import { Lecture, isLecture } from "@/types/Lecture";
 import LectureBox from "./lecture-box";
 import BookmarkBox from "./bookmark-box";
+import MenuBox from "./menu-box";
 
 type EventDialogProps = {
   event: Event | Lecture;
 };
 
 export default function EventDialog({ event }: EventDialogProps) {
-  const { name, duration, description } = event;
+  const { name, duration, description, menu } = event;
   const { restoreBookmarkStatus } = useBookmarks(event);
 
   return (
@@ -28,6 +29,8 @@ export default function EventDialog({ event }: EventDialogProps) {
       </DialogHeader>
 
       {isLecture(event) && <LectureBox lecture={event} />}
+
+      {menu && <MenuBox menu={menu} />}
 
       <BookmarkBox event={event} />
       {description && <p className="text-sm">{description}</p>}
