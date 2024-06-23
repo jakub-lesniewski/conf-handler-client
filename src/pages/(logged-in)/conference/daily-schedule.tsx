@@ -4,7 +4,7 @@ import { Event } from "@/types/Event";
 import SessionItem from "./items/session-item";
 import EventItem from "./items/event-item";
 import SessionDialog from "./dialogs/session-dialog";
-import EventDialog from "./dialogs/event-dialog";
+import EventDialog from "./dialogs/event/event-dialog";
 
 type DailyScheduleProps = {
   schedule?: (Event | Session)[];

@@ -9,7 +9,7 @@ import {
 import { isLecture } from "@/types/Lecture";
 import { Session } from "@/types/Session";
 import SessionLectureItem from "../items/session-lecture-item";
-import EventDialog from "./event-dialog";
+import EventDialog from "./event/event-dialog";
 import EventItem from "../items/event-item";
 
 type SessionDialogProps = {
