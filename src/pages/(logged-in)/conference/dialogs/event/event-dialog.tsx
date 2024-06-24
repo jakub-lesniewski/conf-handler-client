@@ -29,16 +29,17 @@ export default function EventDialog({ event }: EventDialogProps) {
       </DialogHeader>
 
       {isLecture(event) && <LectureBox lecture={event} />}
-      {menu && <MenuBox menu={menu} />}
 
       <BookmarkBox event={event} />
 
       {description && (
         <div
-          className="max-h-[80svh] overflow-auto border-b border-t pb-1 pt-1 text-sm"
+          className="max-h-[80svh] overflow-auto border-y border-t py-2 text-sm"
           dangerouslySetInnerHTML={{ __html: description }}
         />
       )}
+
+      {menu && <MenuBox menu={menu} />}
     </DialogContent>
   );
 }
