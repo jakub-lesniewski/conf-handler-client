@@ -42,46 +42,47 @@ export default function Sidebar() {
           <SheetTitle>{`Welcome ${loggedUser?.name} ${loggedUser?.surname}`}</SheetTitle>
         </SheetHeader>
 
-        {loggedUser?.involvedInEvents && (
-          <>
-            <section className="h-auto space-y-1">
-              <h2 className="font-semibold">Events I'm involved in:</h2>
-              <ol className="flex flex-col gap-2 overflow-auto rounded-md border">
-                {loggedUser?.involvedInEvents.map((event, index) => (
-                  <li
-                    key={index}
-                    onClick={() => handleSelectEvent(event)}
-                    className="cursor-pointer border-b p-2 pt-0 first:pt-2 last:border-none"
-                  >
-                    {event.name}
-                  </li>
-                ))}
-              </ol>
-            </section>
+        {loggedUser?.involvedInEvents &&
+          loggedUser.involvedInEvents.length !== 0 && (
+            <>
+              <section className="h-auto space-y-1">
+                <h2 className="font-semibold">Events I'm involved in:</h2>
+                <ol className="flex flex-col gap-2 overflow-auto rounded-md border">
+                  {loggedUser?.involvedInEvents.map((event, index) => (
+                    <li
+                      key={index}
+                      onClick={() => handleSelectEvent(event)}
+                      className="cursor-pointer border-b p-2 pt-0 first:pt-2 last:border-none"
+                    >
+                      {event.name}
+                    </li>
+                  ))}
+                </ol>
+              </section>
 
-            <Dialog open={openEvent} onOpenChange={setOpenEvent}>
-              {selectedEvent && (
-                <DialogContent className="flex flex-col gap-2">
-                  <DialogHeader className="text-start">
-                    <DialogTitle>{selectedEvent.name}</DialogTitle>
-                    <DialogDescription className="flex flex-col">
-                      <span>{selectedEvent.duration}</span>{" "}
-                      <span>{selectedEvent.date}</span>
-                    </DialogDescription>
-                  </DialogHeader>
+              <Dialog open={openEvent} onOpenChange={setOpenEvent}>
+                {selectedEvent && (
+                  <DialogContent className="flex flex-col gap-2">
+                    <DialogHeader className="text-start">
+                      <DialogTitle>{selectedEvent.name}</DialogTitle>
+                      <DialogDescription className="flex flex-col">
+                        <span>{selectedEvent.duration}</span>{" "}
+                        <span>{selectedEvent.date}</span>
+                      </DialogDescription>
+                    </DialogHeader>
 
-                  <p>
-                    Your role is{" "}
-                    <span className="font-semibold">
-                      {selectedEvent.function}
-                    </span>
-                  </p>
-                  <p></p>
-                </DialogContent>
-              )}
-            </Dialog>
-          </>
-        )}
+                    <p>
+                      Your role is{" "}
+                      <span className="font-semibold">
+                        {selectedEvent.function}
+                      </span>
+                    </p>
+                    <p></p>
+                  </DialogContent>
+                )}
+              </Dialog>
+            </>
+          )}
 
         <Button
           onClick={() => {

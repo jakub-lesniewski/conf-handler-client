@@ -16,8 +16,8 @@ export default function SessionLectureItem({
             <p className="whitespace-nowrap">{lecture.duration}</p>
           </div>
           <p>
-            {lecture.lecturer} about{" "}
-            <span className="font-bold">{lecture.topic}</span>
+            <span className="font-bold">{lecture.lecturer} </span>
+            about <span className="font-semibold italic">{lecture.topic}</span>
           </p>
         </div>
       </div>

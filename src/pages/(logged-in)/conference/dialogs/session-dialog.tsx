@@ -1,7 +1,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -34,7 +33,7 @@ export default function SessionDialog({ session }: SessionDialogProps) {
         <DialogTitle className="text-start">{name}</DialogTitle>
         <div className="flex justify-between gap-6 border-b pb-2">
           <div className="text-start text-sm">
-            <DialogDescription className="flex justify-between">
+            <div className="flex justify-between">
               <div className="w-1/2">
                 <p>
                   {street}, {city}
@@ -53,7 +52,7 @@ export default function SessionDialog({ session }: SessionDialogProps) {
                   </div>
                 )}
               </div>
-            </DialogDescription>
+            </div>
           </div>
         </div>
         {chairman && (
