@@ -28,7 +28,7 @@ export default function SessionDialog({ session }: SessionDialogProps) {
   } = session;
 
   return (
-    <DialogContent className="flex h-svh flex-col gap-3 overflow-auto">
+    <DialogContent className="flex max-h-svh flex-col gap-3 overflow-auto">
       <DialogHeader className="space-y-3">
         <DialogTitle className="text-start">{name}</DialogTitle>
         <div className="flex justify-between gap-6 border-b pb-2">

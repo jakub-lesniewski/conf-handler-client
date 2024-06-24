@@ -43,12 +43,12 @@ export default function Sidebar() {
         </SheetHeader>
 
         {loggedUser?.involvedInEvents &&
-          loggedUser.involvedInEvents.length !== 0 && (
+          loggedUser.involvedInEvents?.length !== 0 && (
             <>
               <section className="h-auto space-y-1">
                 <h2 className="font-semibold">Events I'm involved in:</h2>
                 <ol className="flex flex-col gap-2 overflow-auto rounded-md border">
-                  {loggedUser?.involvedInEvents.map((event, index) => (
+                  {loggedUser?.involvedInEvents?.map((event, index) => (
                     <li
                       key={index}
                       onClick={() => handleSelectEvent(event)}

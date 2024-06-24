@@ -20,7 +20,7 @@ export default function EventDialog({ event }: EventDialogProps) {
 
   return (
     <DialogContent
-      className="flex flex-col overflow-auto"
+      className="flex max-h-svh flex-col overflow-auto"
       onOpenAutoFocus={restoreBookmarkStatus}
     >
       <DialogHeader className="border-b pb-2 text-start">
@@ -29,11 +29,16 @@ export default function EventDialog({ event }: EventDialogProps) {
       </DialogHeader>
 
       {isLecture(event) && <LectureBox lecture={event} />}
-
       {menu && <MenuBox menu={menu} />}
 
       <BookmarkBox event={event} />
-      {description && <p className="text-sm">{description}</p>}
+
+      {description && (
+        <div
+          className="max-h-[80svh] overflow-auto border-b border-t pb-1 pt-1 text-sm"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+      )}
     </DialogContent>
   );
 }
