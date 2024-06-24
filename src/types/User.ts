@@ -7,5 +7,5 @@ export type User = {
   surname: string;
   affiliation: string;
   bookmarkedEvents: string[];
-  involvedInEvents: UserEvent[];
+  involvedInEvents?: UserEvent[];
 };
