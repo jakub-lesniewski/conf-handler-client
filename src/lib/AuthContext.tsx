@@ -29,15 +29,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     null,
   );
 
-  function login(user: User): void {
+  function login(user: User) {
     setLoggedUser(user);
   }
 
-  function logout(): void {
+  function logout() {
     setLoggedUser(null);
   }
 
-  function addBookmarkedEvent(eventId: string): void {
+  function addBookmarkedEvent(eventId: string) {
     if (loggedUser) {
       setLoggedUser({
         ...loggedUser,
@@ -46,7 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  function removeBookmarkedEvent(eventId: string): void {
+  function removeBookmarkedEvent(eventId: string) {
     if (loggedUser) {
       setLoggedUser({
         ...loggedUser,

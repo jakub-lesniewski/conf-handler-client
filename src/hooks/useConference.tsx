@@ -6,8 +6,11 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export function useConference(startDate: Date, endDate: Date) {
+  const today = new Date();
+  const initialDate =
+    today >= startDate && today <= endDate ? today : startDate;
   const { loggedUser } = useAuth();
-  const [currDate, setCurrDate] = useState<Date>(startDate);
+  const [currDate, setCurrDate] = useState<Date>(initialDate);
 
   const {
     data: schedule,
@@ -15,7 +18,7 @@ export function useConference(startDate: Date, endDate: Date) {
     isError: isScheduleError,
   } = useQuery({
     queryKey: ["schedule", currDate],
-    queryFn: () => fetchSchedule(formatDate(currDate)),
+    queryFn: () => fetchSchedule(formatDate(initialDate)),
   });
 
   const {
