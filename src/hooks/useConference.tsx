@@ -18,7 +18,7 @@ export function useConference(startDate: Date, endDate: Date) {
     isError: isScheduleError,
   } = useQuery({
     queryKey: ["schedule", currDate],
-    queryFn: () => fetchSchedule(formatDate(initialDate)),
+    queryFn: () => fetchSchedule(formatDate(currDate)),
   });
 
   const {
